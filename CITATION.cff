@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+title: "astro-mechinterp: a causal audit of the AION-1 astronomical foundation model"
+message: "If you use this software or its results, please cite the manuscript."
+type: software
+abstract: >-
+  Code and per-experiment results for a mechanistic interpretability study of AION-1, a
+  multimodal foundation model for astronomy. The study shows that the model defers to
+  catalogue-derived metadata over raw pixels, isolates the mechanism as detection gating,
+  and quantifies the resulting bias in tomographic mean redshift against the LSST DESC
+  requirement.
+keywords:
+  - mechanistic interpretability
+  - foundation models
+  - astronomy
+  - photometric redshift
+  - sparse autoencoders
+license: MIT
+repository-code: "https://github.com/Kendiukhov/astro-mechinterp"
+authors:
+  - name: "astro-mechinterp contributors"
+preferred-citation:
+  type: article
+  title: "Foundation models defer to their metadata channel: a causal audit of AION-1"
+  year: 2026
+  authors:
+    - name: "astro-mechinterp contributors"

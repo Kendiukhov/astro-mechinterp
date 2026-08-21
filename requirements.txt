@@ -1,0 +1,13 @@
+astropy==8.0.1
+astropy-iers-data==0.2026.8.10.0.32.39
+einops==0.8.2
+h5py==3.16.0
+huggingface_hub==1.27.0
+matplotlib==3.11.1
+numpy==2.4.6
+pandas==3.0.5
+polymathic-aion==0.0.2
+pyarrow==25.0.1
+safetensors==0.8.0
+scipy==1.17.1
+torch==2.13.0

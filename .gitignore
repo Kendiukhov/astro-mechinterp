@@ -1,0 +1,48 @@
+# ---- data (never committed: 115 GiB, all publicly reconstructible; see docs/data.md)
+data/
+*.hdf5
+*.fits
+*.parquet
+
+# ---- activation and token caches (rebuildable with experiments/build_*_cache.py)
+*.npz
+results/cache_*.npz
+results/tokens_*.npz
+
+# ---- python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# ---- LaTeX build artefacts
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.toc
+
+# ---- macOS / exFAT
+.DS_Store
+._*
+
+# ---- superseded drafts, kept locally only
+AGENDA.md
+MANUSCRIPT.md
+PAPER_DRAFT.md
+
+# vendored TMLR template: keep only the style files needed to build
+paper/tmlr/main.tex
+paper/tmlr/main.bib
+paper/tmlr/*.pdf
+paper/tmlr/math_commands.tex
+paper/tmlr/smoke.*
+paper/tmlr/README.md
+paper/submission/

@@ -1,0 +1,148 @@
+{
+  "cache": "cache_N3000_rand.npz",
+  "layer": "final",
+  "n": 3000,
+  "probes": {
+    "z": {
+      "ALL rows (mean)": {
+        "r2": 0.9066756844156894,
+        "n": 3000
+      },
+      "image rows": {
+        "r2": 0.8870718782652839,
+        "n": 3000
+      },
+      "spectrum rows": {
+        "r2": 0.9231012834816962,
+        "n": 3000
+      },
+      "img+spec concat": {
+        "r2": 0.9174220778187022,
+        "n": 3000
+      },
+      "BASELINE: input fluxes+colours": {
+        "r2": 0.5968256950984617,
+        "n": 3000
+      },
+      "shared_direction": {
+        "cosine": 0.25164777642984953,
+        "img_probe_on_spec_r2": 0.5656522289860071,
+        "spec_probe_on_img_r2": 0.6970818430747492
+      }
+    },
+    "log_mstar": {
+      "ALL rows (mean)": {
+        "r2": 0.9160166948505947,
+        "n": 2911
+      },
+      "image rows": {
+        "r2": 0.8983552975342382,
+        "n": 2911
+      },
+      "spectrum rows": {
+        "r2": 0.9215604575642232,
+        "n": 2911
+      },
+      "img+spec concat": {
+        "r2": 0.9265261804869298,
+        "n": 2911
+      },
+      "BASELINE: input fluxes+colours": {
+        "r2": 0.6198521408231692,
+        "n": 2911
+      },
+      "shared_direction": {
+        "cosine": 0.22020848777680965,
+        "img_probe_on_spec_r2": 0.45734700681963425,
+        "spec_probe_on_img_r2": 0.598003978505528
+      }
+    },
+    "log_Z_mw": {
+      "ALL rows (mean)": {
+        "r2": 0.501669093849468,
+        "n": 2881
+      },
+      "image rows": {
+        "r2": 0.4940405281591975,
+        "n": 2881
+      },
+      "spectrum rows": {
+        "r2": 0.5123178034867233,
+        "n": 2881
+      },
+      "img+spec concat": {
+        "r2": 0.5182826111791231,
+        "n": 2881
+      },
+      "BASELINE: input fluxes+colours": {
+        "r2": 0.3160351554277465,
+        "n": 2881
+      },
+      "shared_direction": {
+        "cosine": 0.15696017387395955,
+        "img_probe_on_spec_r2": 0.2746989779450164,
+        "spec_probe_on_img_r2": 0.33134458763091534
+      }
+    },
+    "t_age_mw": {
+      "ALL rows (mean)": {
+        "r2": 0.4301732466900591,
+        "n": 2881
+      },
+      "image rows": {
+        "r2": 0.41543773131694706,
+        "n": 2881
+      },
+      "spectrum rows": {
+        "r2": 0.420846271149366,
+        "n": 2881
+      },
+      "img+spec concat": {
+        "r2": 0.430584488598041,
+        "n": 2881
+      },
+      "BASELINE: input fluxes+colours": {
+        "r2": 0.16756275274450783,
+        "n": 2881
+      },
+      "shared_direction": {
+        "cosine": 0.31055319999585135,
+        "img_probe_on_spec_r2": 0.24048890880042084,
+        "spec_probe_on_img_r2": 0.23423159065545263
+      }
+    },
+    "log_sSFR": {
+      "ALL rows (mean)": {
+        "r2": 0.6852914133711093,
+        "n": 2881
+      },
+      "image rows": {
+        "r2": 0.6838273906152137,
+        "n": 2881
+      },
+      "spectrum rows": {
+        "r2": 0.6881658144300293,
+        "n": 2881
+      },
+      "img+spec concat": {
+        "r2": 0.6883415064390164,
+        "n": 2881
+      },
+      "BASELINE: input fluxes+colours": {
+        "r2": 0.47399990568303874,
+        "n": 2881
+      },
+      "shared_direction": {
+        "cosine": 0.29967799389381417,
+        "img_probe_on_spec_r2": 0.5847062430138377,
+        "spec_probe_on_img_r2": 0.5703881448267032
+      }
+    }
+  },
+  "verdict": {
+    "dilution_gain_z": 0.016425599066006824,
+    "dilution_explains_pooling_collapse": false,
+    "cosine_z": 0.25164777642984953,
+    "d1_worth_running": true
+  }
+}

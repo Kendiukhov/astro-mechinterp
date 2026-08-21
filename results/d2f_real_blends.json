@@ -1,0 +1,30 @@
+{
+  "n_blended": 240,
+  "median_segments": 2.0,
+  "median_central_light_fraction": 0.8583248853683472,
+  "control_segmap_token_diff_median": 0.2847222089767456,
+  "control_segmap_token_diff_zero_frac": 0.0,
+  "integration": {
+    "n_used": 231,
+    "median_dflux_nmgy": -0.016236060413014286,
+    "median_dlight_nmgy": 1.0529026985168457,
+    "R_median": -0.011749197510641766,
+    "R_lo16": -0.01390354531092373,
+    "R_hi84": -0.008282280440157474,
+    "spearman_dlight_dflux": 0.027591074592573844
+  },
+  "vs_truth": {
+    "central_mask_dmag": [
+      0.08289288408065491,
+      0.07597164040113562,
+      0.08756171542895125
+    ],
+    "all_segments_mask_dmag": [
+      0.07848562351969915,
+      0.07347498433685153,
+      0.08472638020235668
+    ],
+    "spearman_neighbour_fraction_vs_error": 0.1757244049375857
+  },
+  "verdict": "ignores mask extent"
+}

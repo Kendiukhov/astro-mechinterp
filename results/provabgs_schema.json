@@ -1,0 +1,502 @@
+{
+  "desi": {
+    "type": "group",
+    "n_keys": 8
+  },
+  "desi/dec": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "desi/healpix": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "int64"
+  },
+  "desi/object_id": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "int64"
+  },
+  "desi/ra": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "desi/spectrum_flux": {
+    "type": "dataset",
+    "shape": [
+      115404,
+      7781
+    ],
+    "dtype": "float32"
+  },
+  "desi/spectrum_ivar": {
+    "type": "dataset",
+    "shape": [
+      115404,
+      7781
+    ],
+    "dtype": "float32"
+  },
+  "desi/spectrum_lambda": {
+    "type": "dataset",
+    "shape": [
+      115404,
+      7781
+    ],
+    "dtype": "float32"
+  },
+  "desi/spectrum_mask": {
+    "type": "dataset",
+    "shape": [
+      115404,
+      7781
+    ],
+    "dtype": "bool"
+  },
+  "legacysurvey": {
+    "type": "group",
+    "n_keys": 21
+  },
+  "legacysurvey/EBV": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float32"
+  },
+  "legacysurvey/FLUX_G": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float32"
+  },
+  "legacysurvey/FLUX_I": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float32"
+  },
+  "legacysurvey/FLUX_R": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float32"
+  },
+  "legacysurvey/FLUX_W1": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float32"
+  },
+  "legacysurvey/FLUX_W2": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float32"
+  },
+  "legacysurvey/FLUX_W3": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float32"
+  },
+  "legacysurvey/FLUX_W4": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float32"
+  },
+  "legacysurvey/FLUX_Z": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float32"
+  },
+  "legacysurvey/dec": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "legacysurvey/gid": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "int64"
+  },
+  "legacysurvey/healpix": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "int64"
+  },
+  "legacysurvey/image_array": {
+    "type": "dataset",
+    "shape": [
+      115404,
+      4,
+      160,
+      160
+    ],
+    "dtype": "float32"
+  },
+  "legacysurvey/image_band": {
+    "type": "dataset",
+    "shape": [
+      115404,
+      4
+    ],
+    "dtype": "|S5"
+  },
+  "legacysurvey/image_ivar": {
+    "type": "dataset",
+    "shape": [
+      115404,
+      4,
+      160,
+      160
+    ],
+    "dtype": "float32"
+  },
+  "legacysurvey/image_mask": {
+    "type": "dataset",
+    "shape": [
+      115404,
+      160,
+      160
+    ],
+    "dtype": "bool"
+  },
+  "legacysurvey/image_rgb": {
+    "type": "dataset",
+    "shape": [
+      115404,
+      160,
+      160,
+      3
+    ],
+    "dtype": "uint8"
+  },
+  "legacysurvey/image_scale": {
+    "type": "dataset",
+    "shape": [
+      115404,
+      4
+    ],
+    "dtype": "float32"
+  },
+  "legacysurvey/object_id": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "|S16"
+  },
+  "legacysurvey/object_mask": {
+    "type": "dataset",
+    "shape": [
+      115404,
+      160,
+      160
+    ],
+    "dtype": "uint8"
+  },
+  "legacysurvey/ra": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3": {
+    "type": "group",
+    "n_keys": 38
+  },
+  "provabgs_desi_edr_sv3/FIBMAG_R": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/HPIX_64": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "int64"
+  },
+  "provabgs_desi_edr_sv3/IS_BGS_BRIGHT": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "bool"
+  },
+  "provabgs_desi_edr_sv3/IS_BGS_FAINT": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "bool"
+  },
+  "provabgs_desi_edr_sv3/LOG_Z_MW": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/LOG_sSFR": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/MAG_G": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/MAG_R": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/MAG_W1": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/MAG_Z": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/PROVABGS_LOGMSTAR_BF": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/PROVABGS_W_FIBASSIGN": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/PROVABGS_W_ZFAIL": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/PROVABGS_Z_MAX": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/SCHLEGEL_COLOR": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/TAGE_MW": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/TARGETID": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "int64"
+  },
+  "provabgs_desi_edr_sv3/TSNR2_BGS": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float32"
+  },
+  "provabgs_desi_edr_sv3/ZERR": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/Z_HP": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/Z_MW": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/avgSFR": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/beta_1": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/beta_2": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/beta_3": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/beta_4": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/dec": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/f_burst": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/f_fiber": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/gamma_1": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/gamma_2": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/log_M_form": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/n_dust": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/object_id": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "int64"
+  },
+  "provabgs_desi_edr_sv3/ra": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/t_burst": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/tau_BC": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  },
+  "provabgs_desi_edr_sv3/tau_ISM": {
+    "type": "dataset",
+    "shape": [
+      115404
+    ],
+    "dtype": "float64"
+  }
+}

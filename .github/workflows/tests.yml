@@ -1,0 +1,35 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      # The smoke tests need neither model weights nor data, so CI installs only what
+      # the figure pipeline and the JSON checks touch.
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy scipy matplotlib pytest
+      - name: Run smoke tests
+        run: pytest tests/ -q -k "not library_imports and not band_normalisation and not check_bands"
+      - name: Verify every cited result file is present
+        run: |
+          python - <<'PY'
+          import json, pathlib, sys
+          need = [l.split('`')[3] for l in
+                  pathlib.Path('docs/claims-to-code.md').read_text().splitlines()
+                  if l.startswith('|') and l.count('`') >= 4 and '.json' in l]
+          missing = [n for n in need if not pathlib.Path('results', n).exists()]
+          if missing:
+              sys.exit(f"missing result files: {missing}")
+          print(f"all {len(set(need))} cited result files present")
+          PY

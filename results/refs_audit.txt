@@ -1,0 +1,111 @@
+mcp__ccd_session__mark_chapter is not needed here. Compiling the report.
+
+BIBLIOGRAPHY AUDIT REPORT — AION-1 mechanistic interpretability paper
+
+SCOPE OF AUDIT
+I independently re-fetched a record page for every entry in the submitted list (85 rows). Sources used: arxiv.org/abs pages, the official arXiv metadata API (export.arxiv.org/api/query?id_list=...), api.crossref.org DOI records, aclanthology.org, joss.theoj.org, ascl.net, transformer-circuits.pub, academic.oup.com, lsst.org and github.com/lsst-pst. Every arXiv ID that appears in the list was seen by me on a fetched record — none is unconfirmed.
+
+HEADLINE RESULT
+- Input rows: 85
+- Duplicate rows to merge: 1
+- DROP: 1
+- Final KEEP+FIX: 83 (requirement was >= 40)
+- No fabricated papers found. This is a clean list.
+
+=====================================================================
+1. DUPLICATE — MERGE
+=====================================================================
+
+parker2025aion appears TWICE with the identical bibtex_key (row 1 as entry_type "misc", row 41 as entry_type "inproceedings"). Same paper, same arXiv ID 2510.17960.
+
+ACTION: delete the "misc" row, keep the "inproceedings" row. Justification: arxiv.org/abs/2510.17960 states "Accepted at Neural Information Processing Systems (2025)", so inproceedings is the correct type. Retain arxiv_id 2510.17960 and doi 10.48550/arXiv.2510.17960 on the surviving row. Verified title/authors: "AION-1: Omnimodal Foundation Model for Astronomical Sciences", Liam Parker, Francois Lanusse, Jeff Shen and others, 2025.
+
+No other duplicates found.
+
+=====================================================================
+2. DROP
+=====================================================================
+
+ivezic2018srd — "The LSST System Science Requirements Document", LPM-17.
+REASON: the document is real (handle LPM-17, attribution "Ivezic, Zeljko and the LSST Science Collaboration" confirmed on https://www.lsst.org/scientists/publications/science-requirements-document, and https://github.com/lsst-pst/LPM-17 confirms the title "The LSST Science Requirements Document"), but I could NOT verify the claimed year 2018 or the claimed "Latest Revision 2018-01-30". The Rubin page I fetched shows a different revision date, and the publicly linked PDF is v5.2.3 dated 2011. Per the no-unverified-year rule this must not go in with year 2018. It is also redundant: ivezic2019lsst covers survey design and lsstdesc2018srd covers the quantitative photo-z requirements. If you want it back, cite it version-agnostically as "Ivezic, Z. and the LSST Science Collaboration, LSST Science Requirements Document, LPM-17, https://ls.st/LPM-17" with no year field.
+
+=====================================================================
+3. FIX — real paper, field wrong or weak
+=====================================================================
+
+F1. york2000sdss — pages
+   WRONG: "1579"
+   CORRECT: "1579--1587"
+   Source: https://api.crossref.org/works/10.1086/301513 (AJ 120, issue 3, 1579–1587, 2000; York, Donald G.; Adelman, J.; Anderson, John E., Jr.)
+
+F2. lsstscience2009sciencebook — authors (leading collaboration omitted)
+   WRONG: "Abell, Paul A. and Allison, Julius and Anderson, Scott F. and others"
+   CORRECT: "{LSST Science Collaboration} and Abell, Paul A. and Allison, Julius and others"
+   Source: arXiv API record for 0912.0201, byline begins "LSST Science Collaboration, Paul A. Abell, Julius Allison, ..."
+
+F3. aihara2018hsc — verified_via is a SEARCH QUERY, not a record page
+   WRONG: "http://export.arxiv.org/api/query?search_query=ti:..."
+   CORRECT: "https://api.crossref.org/works/10.1093/pasj/psx066"
+   All content fields independently confirmed and unchanged: title "The Hyper Suprime-Cam SSP Survey: Overview and Survey Design"; Aihara, Hiroaki; Arimoto, Nobuo; Armstrong, Robert and others; PASJ 70, issue SP1, S4, 2018; arXiv 1704.05858 (confirmed on the arXiv record).
+
+F4. salvato2019flavours — verified_via is a HAL SEARCH API query, not a record page
+   WRONG: "https://api.archives-ouvertes.fr/search/?q=title_t:..."
+   CORRECT: "https://api.crossref.org/works/10.1038/s41550-018-0478-0"
+   Fields confirmed and unchanged: Nature Astronomy 3, 212–222; Salvato, Mara; Ilbert, Olivier; Hoyle, Ben; arXiv 1805.12574. YEAR NOTE: Crossref's date is 2018 (online-first Dec 2018) but the printed issue is vol. 3 issue 3 = March 2019, and the standard/ADS citation year is 2019. Keep year 2019 as submitted.
+
+F5. wu2025euclid — journal_or_venue too thin
+   CURRENT: "arXiv preprint"
+   BETTER: "arXiv preprint (NeurIPS 2025 Machine Learning and the Physical Sciences Workshop)"
+   Source: https://arxiv.org/abs/2510.23749. Title, authors (John F. Wu, Michael Walmsley) and year 2025 confirmed correct.
+
+F6. mccabe2025walrus — entry_type (optional but recommended)
+   CURRENT: misc, with venue string "arXiv preprint (Proceedings of the 43rd International Conference on Machine Learning, ICML 2026)"
+   RECOMMEND: entry_type "inproceedings", journal_or_venue "Proceedings of the 43rd International Conference on Machine Learning (ICML 2026)"
+   Source: https://arxiv.org/abs/2511.15684 carries exactly that proceedings reference (v1 19 Nov 2025, v2 5 Jul 2026). Authors confirmed: McCabe, Michael; Mukhopadhyay, Payel; Marwah, Tanya and others. arXiv ID 2511.15684 confirmed.
+
+=====================================================================
+4. THE FOUR "IMPLAUSIBLE" 26xx IDs — ALL GENUINE
+=====================================================================
+These were my top suspicion and all four survived a direct abs-page fetch:
+
+- rosenfeld2026sparse / arXiv 2606.11657 — CONFIRMED. "Sparse probes and murky physics: a case study of interpretability challenges in a foundation model for continuum dynamics", Katherine Rosenfeld, Maike Sonnewald, submitted 10 June 2026, ICLR 2026 Workshop on Foundation Models for Science. KEEP as written.
+- qi2026quantum / arXiv 2607.01336 — CONFIRMED. "Mechanistic Interpretability and Causal Feature Steering of Neural Quantum States via Sparse Autoencoders", Zihao Qi, Christopher Earls, 1 July 2026. KEEP.
+- hu2026cfd / arXiv 2604.04946 — CONFIRMED. "Sparse Autoencoders as a Steering Basis for Phase Synchronization in Graph-Based CFD Surrogates", Yeping Hu, Ruben Glatt, Shusen Liu, 2026. KEEP (year 2026 correct).
+- mccabe2025walrus / arXiv 2511.15684 — CONFIRMED, see F6.
+
+=====================================================================
+5. KEEP WITH A NOTE (no field change needed — do not "correct" these)
+=====================================================================
+
+- walmsley2022decals: Crossref reports 2021 (online-first 30 Sep 2021), but the MNRAS issue is vol. 509 issue 3, January 2022, pages 3966–3988 (confirmed on academic.oup.com/mnras/article/509/3/3966/6378289); ADS bibcode 2022MNRAS.509.3966W. Year 2022 as submitted is CORRECT.
+- leung2024stars: same pattern. Crossref 2023, but MNRAS 527 issue 1 is January 2024; ADS 2024MNRAS.527.1494L. Year 2024 as submitted is CORRECT. Pages 1494–1520 confirmed.
+- desi2025dr1: still a preprint as of v2 (4 Mar 2026), comment reads "Accepted to The Astronomical Journal". Keeping entry_type misc is right; revisit if you want the AJ volume.
+- cunningham2023sparse: arXiv record shows no journal-ref. The paper later appeared at ICLR 2024, but citing the 2023 arXiv preprint as misc is verified and defensible.
+- aihara2022hscpdr3: published PASJ title is sentence-case ("Third data release of the Hyper Suprime-Cam Subaru Strategic Program"); the entry uses the arXiv title-case form. Either is acceptable; PASJ 74, issue 2, 247–272, 2022 confirmed.
+- rizhko2025astrom3: AJ renders the title with a superscript ("AstroM³"). AJ 170, issue 1, article 28, 2025 confirmed via Crossref. Plain "AstroM3" is fine in BibTeX.
+- melchior2018scarlet: the lowercase "scarlet:" in the title is CORRECT — that is how Astronomy and Computing publishes it (Crossref confirms). Do not capitalize it.
+- wu2025sparsefeature: arXiv 2501.00089 was submitted 30 Dec 2024 but announced Jan 2025; journal-ref on the abs page reads "ApJ (2025), 980 183". Year 2025, volume 980, page 183 all CORRECT.
+- interplm/simon2025: arXiv title is title-case, Nature Methods title is sentence-case. Entry uses the Nature Methods form with the Nature Methods DOI — internally consistent. Nature Methods 22, 2107–2117, 2025 confirmed. arXiv 2412.12101 confirmed.
+
+=====================================================================
+6. VERIFIED CLEAN — no changes (grouped)
+=====================================================================
+
+AION / astronomy foundation models: parker2025aion (merged), shen2025spectral (2510.17959, NeurIPS 2025 ML4PS workshop), parker2024astroclip (MNRAS 531(4) 4990–5011, 2024), mmu2024multimodal (2412.02527; byline confirmed as "The Multimodal Universe Collaboration, Eirini Angeloudi, Jeroen Audenaert, ..."), walmsley2023zoobot (JOSS 8(85) 5312, 2023), smith2024astropt (full 4-author list confirmed: Smith, Roberts, Angeloudi, Huertas-Company), walmsley2023gzdesi (MNRAS 526(3) 4768–4786, 2023), walmsley2024scaling (2404.02973), mccabe2023mpp (2310.02994).
+
+Interpretability methods: gao2024scaling, bussmann2024batchtopk, rajamanoharan2024jumping, elhage2022toy, dunefsky2024transcoders (arXiv comment "NeurIPS 2024" confirms the inproceedings type), lindsey2024crosscoders (Transformer Circuits Thread, 25 Oct 2024, Lindsey/Templeton/Marcus + Conerly, Batson, Olah), marks2025sparse (journal-ref "International Conference on Learning Representations, 2025" — inproceedings correct), meng2022locating (comment "NeurIPS 2022"; 4 authors confirmed incl. Belinkov), vig2020causal, zhang2024towards (comment "ICLR 2024"), belrose2023leace, ravfogel2020null (comment "Accepted as a long paper in ACL 2020"), alain2016understanding, belinkov2022probing (CL 48(1) 207–219, 2022; arXiv 2102.12452 confirmed), park2024linear (journal-ref "41st ICML, 2024" — matches).
+
+Science-domain SAE work: wu2025euclid (see F5), wu2025sparsefeature, rosenfeld2026sparse, simon2025interplm, pedrocchi2025singlecell (bioRxiv, posted 23 Oct 2025), cranmer2020symbolic (2006.11287 + NeurIPS 2020 proceedings page), zaigrajew2025clip (journal-ref confirms ICML 2025, the 42nd — entry's "42nd" is right), qi2026quantum, hu2026cfd, wetzel2025physics (2503.23616, 30 Mar 2025, Wetzel/Ha/Iten + Klopotek, Liu), lieu2025astronomy (Universe 11(6) 187, 2025), guan2025genelm (2507.07486, AI4X 2025 Oral).
+
+Surveys/data: dey2019legacy, desi2024edr (journal-ref "AJ 168 58 (2024)"), desi2016experiment, abareshi2022desiinstrument (published byline does begin "DESI Collaboration" — the entry is right), desi2025dr1, aihara2018hsc (see F3), aihara2022hscpdr3, york2000sdss (see F1), gaia2016mission (A&A 595 A1, 2016), gaia2023dr3 (A&A 674 A1, 2023), hahn2023provabgs (ApJ 945(1) 16, 2023), hahn2023bgs (AJ 165(6) 253, 2023; published title does begin with "The"), bertin1996sextractor (A&AS 117, 393–404, 1996), lang2016tractor (ascl:1604.008), lang2025legacypipe (ascl:2502.024).
+
+Architecture/tokenizers: vaswani2017attention, dosovitskiy2020image, vandenoord2017neural, mentzer2023finite (4 authors confirmed incl. Tschannen), yu2024language (comment "ICLR 2024"), esser2020taming, yu2022vector (comment "Accepted in ICLR 2022"), huh2023straightening (4 authors confirmed incl. Isola), mizrahi20234m (comment "NeurIPS 2023 Spotlight"), bachmann20244m21, chang2022maskgit, he2021masked, liu2022convnet (comment "CVPR 2022"), woo2023convnextv2.
+
+LSST/photo-z/blending: ivezic2019lsst (ApJ 873(2) 111, 2019), lsstdesc2018srd, schmidt2020evaluation (journal-ref "MNRAS 499 2 1587 (2020)"), benitez2000bayesian (journal-ref "Astrophys.J.536:571-583,2000"), salvato2019flavours (see F4), melchior2018scarlet, melchior2021blending (Nat Rev Phys 3, 712–718, 2021), sanchez2021blending, suchyta2016balrog (MNRAS 457(1) 786–808, 2016), everett2022balrog (journal-ref "Ap. J. Supp. 258 (2022) 15"), myles2021redshift, newman2022photoz (journal-ref "ARA&A 60:363-414 (2022)"), lsstscience2009sciencebook (see F2).
+
+=====================================================================
+7. FINAL COUNT
+=====================================================================
+85 submitted rows − 1 duplicate row (parker2025aion) − 1 DROP (ivezic2018srd) = 83 entries in the final bibliography.
+Of those 83: 77 KEEP as-is, 6 FIX (F1–F6, corrections given above).
+Requirement of >= 40 is met with large margin.

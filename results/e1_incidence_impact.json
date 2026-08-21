@@ -1,0 +1,272 @@
+{
+  "part_a_incidence": {
+    "n_scanned": 5000,
+    "frac_no_segment_at_centre": 0.0368,
+    "centroid_offset_px": {
+      "median": 1.5811388300841898,
+      "p90": 12.3423767777374,
+      "p99": 35.09865994329235,
+      "frac_gt_5px": 0.16196013289036545,
+      "frac_gt_10px": 0.1173172757475083
+    }
+  },
+  "part_b": {
+    "n": 960,
+    "lsst_requirement": 0.003,
+    "by_config": {
+      "img|miss_only": {
+        "bins": [
+          {
+            "lo": 0.0,
+            "hi": 0.15,
+            "n": 217,
+            "mean_true": 0.13641093548576128,
+            "mean_perturbed": 0.1334918981787109,
+            "shift_over_1pz": 0.002655508128720384,
+            "delta_ci": [
+              -0.002919037307050371,
+              -0.003946105987863606,
+              -0.0017211508627311442
+            ],
+            "exceeds_requirement": false
+          },
+          {
+            "lo": 0.15,
+            "hi": 0.25,
+            "n": 263,
+            "mean_true": 0.23554073747233292,
+            "mean_perturbed": 0.22572839842266457,
+            "shift_over_1pz": 0.008163335533655782,
+            "delta_ci": [
+              -0.009812339049668366,
+              -0.01248843141296744,
+              -0.006957840378690129
+            ],
+            "exceeds_requirement": true
+          },
+          {
+            "lo": 0.25,
+            "hi": 0.35,
+            "n": 286,
+            "mean_true": 0.2985870417702448,
+            "mean_perturbed": 0.2890921378820822,
+            "shift_over_1pz": 0.007348083526622141,
+            "delta_ci": [
+              -0.009494903888162617,
+              -0.012837602279663502,
+              -0.006186657802208322
+            ],
+            "exceeds_requirement": true
+          },
+          {
+            "lo": 0.35,
+            "hi": 1.0,
+            "n": 189,
+            "mean_true": 0.40220949913143483,
+            "mean_perturbed": 0.3991683348126355,
+            "shift_over_1pz": 0.0021340533577171024,
+            "delta_ci": [
+              -0.003041164318799342,
+              -0.005306521489743202,
+              -0.0012723238222182743
+            ],
+            "exceeds_requirement": false
+          }
+        ],
+        "worst_shift_over_1pz": 0.008163335533655782,
+        "n_bins_exceeding": 2,
+        "worst_over_requirement": 2.721111844551927
+      },
+      "img|miss_shift": {
+        "bins": [
+          {
+            "lo": 0.0,
+            "hi": 0.15,
+            "n": 217,
+            "mean_true": 0.13641093548576128,
+            "mean_perturbed": 0.15879022129189035,
+            "shift_over_1pz": 0.020358895458305628,
+            "delta_ci": [
+              0.022379285806129055,
+              0.017699095771609365,
+              0.027947078871493513
+            ],
+            "exceeds_requirement": true
+          },
+          {
+            "lo": 0.15,
+            "hi": 0.25,
+            "n": 263,
+            "mean_true": 0.23554073747233292,
+            "mean_perturbed": 0.22508167600818688,
+            "shift_over_1pz": 0.008701373614055768,
+            "delta_ci": [
+              -0.010459061464146062,
+              -0.01532062977155805,
+              -0.005326315606784911
+            ],
+            "exceeds_requirement": true
+          },
+          {
+            "lo": 0.25,
+            "hi": 0.35,
+            "n": 286,
+            "mean_true": 0.2985870417702448,
+            "mean_perturbed": 0.28316551392858885,
+            "shift_over_1pz": 0.011934683702263959,
+            "delta_ci": [
+              -0.015421527841655942,
+              -0.020223529116361293,
+              -0.010872996293425146
+            ],
+            "exceeds_requirement": true
+          },
+          {
+            "lo": 0.35,
+            "hi": 1.0,
+            "n": 189,
+            "mean_true": 0.40220949913143483,
+            "mean_perturbed": 0.36866359461946463,
+            "shift_over_1pz": 0.023539915195930697,
+            "delta_ci": [
+              -0.03354590451197019,
+              -0.03997455285024391,
+              -0.027732935262420193
+            ],
+            "exceeds_requirement": true
+          }
+        ],
+        "worst_shift_over_1pz": 0.023539915195930697,
+        "n_bins_exceeding": 4,
+        "worst_over_requirement": 7.846638398643566
+      },
+      "img_spec|miss_only": {
+        "bins": [
+          {
+            "lo": 0.0,
+            "hi": 0.15,
+            "n": 217,
+            "mean_true": 0.10738273124609675,
+            "mean_perturbed": 0.10738273124609675,
+            "shift_over_1pz": 0.0,
+            "delta_ci": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "exceeds_requirement": false
+          },
+          {
+            "lo": 0.15,
+            "hi": 0.25,
+            "n": 263,
+            "mean_true": 0.20953803903249732,
+            "mean_perturbed": 0.20956033978172128,
+            "shift_over_1pz": 1.8553017547154674e-05,
+            "delta_ci": [
+              2.2300749223948432e-05,
+              0.0,
+              4.4601498447896865e-05
+            ],
+            "exceeds_requirement": false
+          },
+          {
+            "lo": 0.25,
+            "hi": 0.35,
+            "n": 286,
+            "mean_true": 0.29688493000877486,
+            "mean_perturbed": 0.29688493000877486,
+            "shift_over_1pz": 0.0,
+            "delta_ci": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "exceeds_requirement": false
+          },
+          {
+            "lo": 0.35,
+            "hi": 1.0,
+            "n": 189,
+            "mean_true": 0.4280283645031944,
+            "mean_perturbed": 0.4280283645031944,
+            "shift_over_1pz": 0.0,
+            "delta_ci": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "exceeds_requirement": false
+          }
+        ],
+        "worst_shift_over_1pz": 1.8553017547154674e-05,
+        "n_bins_exceeding": 0,
+        "worst_over_requirement": 0.0061843391823848915
+      },
+      "img_spec|miss_shift": {
+        "bins": [
+          {
+            "lo": 0.0,
+            "hi": 0.15,
+            "n": 217,
+            "mean_true": 0.10738273124609675,
+            "mean_perturbed": 0.10857196874950888,
+            "shift_over_1pz": 0.0010818737566876684,
+            "delta_ci": [
+              0.0011892375034121324,
+              0.0004865062435925831,
+              0.0018649406545722539
+            ],
+            "exceeds_requirement": false
+          },
+          {
+            "lo": 0.15,
+            "hi": 0.25,
+            "n": 263,
+            "mean_true": 0.20953803903249732,
+            "mean_perturbed": 0.20953803908915575,
+            "shift_over_1pz": 4.7136748518231525e-11,
+            "delta_ci": [
+              5.6658407581169795e-11,
+              -4.4601441789489285e-05,
+              4.4601555106304444e-05
+            ],
+            "exceeds_requirement": false
+          },
+          {
+            "lo": 0.25,
+            "hi": 0.35,
+            "n": 286,
+            "mean_true": 0.29688493000877486,
+            "mean_perturbed": 0.2969874667746204,
+            "shift_over_1pz": 7.935295910915513e-05,
+            "delta_ci": [
+              0.00010253676584550551,
+              4.101476886055686e-05,
+              0.00014355153470606237
+            ],
+            "exceeds_requirement": false
+          },
+          {
+            "lo": 0.35,
+            "hi": 1.0,
+            "n": 189,
+            "mean_true": 0.4280283645031944,
+            "mean_perturbed": 0.4280904291798829,
+            "shift_over_1pz": 4.355217863890892e-05,
+            "delta_ci": [
+              6.20646766884617e-05,
+              3.103225950210813e-05,
+              9.309709387481528e-05
+            ],
+            "exceeds_requirement": false
+          }
+        ],
+        "worst_shift_over_1pz": 0.0010818737566876684,
+        "n_bins_exceeding": 0,
+        "worst_over_requirement": 0.3606245855625561
+      }
+    }
+  },
+  "verdict": "IMAGING-ONLY photo-z exceeds the LSST requirement from the measured miss rate ALONE"
+}

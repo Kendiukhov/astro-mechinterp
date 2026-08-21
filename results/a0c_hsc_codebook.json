@@ -1,0 +1,16 @@
+{
+  "n_cutouts": 1500,
+  "tokens": 864000,
+  "vocab": 4375,
+  "codes_used": 312,
+  "frac_used": 0.07131428571428572,
+  "rownorm_proxy_frac": 0.09645714285714285,
+  "perplexity": 2.493064253608704,
+  "overlap_with_legacy": {
+    "hsc_emitted": 312,
+    "legacy_live_rownorm": 1014,
+    "intersection": 312,
+    "frac_hsc_inside_legacy": 1.0
+  },
+  "verdict": "proxy overstates HSC usage, as it did for Legacy"
+}

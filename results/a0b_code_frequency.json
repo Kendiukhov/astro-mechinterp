@@ -1,0 +1,53 @@
+{
+  "n_cutouts": 2000,
+  "modalities": {
+    "tok_image": {
+      "vocab": 4375,
+      "tokens_seen": 1152000,
+      "codes_used": 364,
+      "frac_used": 0.0832,
+      "rownorm_proxy_frac": 0.23177142857142857,
+      "perplexity": 6.875727935852661,
+      "effective_frac": 0.0015715949567663224,
+      "top_1pct_share": 0.9867847222222224,
+      "codes_for_50pct_mass": 2,
+      "codes_for_99pct_mass": 51,
+      "min_used_freq": 8.680555555555556e-07
+    },
+    "tok_spectrum_desi": {
+      "vocab": 1024,
+      "tokens_seen": 546000,
+      "codes_used": 1024,
+      "frac_used": 1.0,
+      "rownorm_proxy_frac": 1.0,
+      "perplexity": 934.3086641898918,
+      "effective_frac": 0.9124108048729412,
+      "top_1pct_share": 0.03510989010989011,
+      "codes_for_50pct_mass": 355,
+      "codes_for_99pct_mass": 989,
+      "min_used_freq": 0.0001227106227106227
+    }
+  },
+  "image_split": {
+    "source": {
+      "label": "source patches",
+      "tokens": 101968,
+      "codes_used": 237,
+      "frac_used": 0.05417142857142857,
+      "perplexity": 28.150821683549054,
+      "codes_for_50pct": 5
+    },
+    "sky": {
+      "label": "sky patches",
+      "tokens": 1050032,
+      "codes_used": 356,
+      "frac_used": 0.08137142857142857,
+      "perplexity": 5.2359543815347545,
+      "codes_for_50pct": 1
+    }
+  },
+  "verdict": {
+    "proxy_confirmed": false,
+    "note": "direct count DISAGREES with the row-norm proxy \u2014 A0's figure needs restating"
+  }
+}
