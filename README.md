@@ -54,7 +54,7 @@ Python 3.11, PyTorch ≥ 2.6. Apple Silicon (MPS) and CUDA are both supported; t
 bit-exact against CPU.
 
 ```bash
-git clone https://github.com/Kendiukhov/astro-mechinterp
+git clone <this-repository>
 cd astro-mechinterp
 python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
