@@ -854,18 +854,27 @@ Width & $k$ & Seed & FVU & FVU (PCA, same $k$) & Alive (\%) & Recovery (\%) \\
 
 \section*{Data and code availability}
 
-Code, per-experiment JSON and the figure-generation script are archived at
-\texttt{[DOI on acceptance]}; the anonymised archive accompanies this submission. It contains
-\texttt{astron\_mi/} (loading, encoding, activation hooks, physics decoding, dictionary
-learning), 23 experiment scripts in \texttt{experiments/}, and \texttt{results/}. A table in
-\texttt{ARCHIVE.md} maps every numbered claim in this paper to the script and JSON file that
-produced it. Every figure is regenerated from the recorded JSON by
-\texttt{experiments/make\_paper\_figures.py} with no live model call, so figures cannot drift
-from the text. All measurements are against \texttt{polymathic-aion} 0.0.2 with weights
-\texttt{aion-base} revision \texttt{40541618} and \texttt{aion-large} revision
-\texttt{cfdb89e8}; \texttt{requirements.txt} pins the environment. Data are public: the
-PROVABGS--DESI--Legacy cross-match \citep{hahn2023provabgs,dey2019legacy,desi2024edr} and
-MultimodalUniverse HSC PDR3 \citep{mmu2024multimodal,aihara2022hscpdr3}.
+All code, per-experiment JSON and the figure-generation script are available at
+\url{https://anonymous.4open.science/r/astro-mechinterp-E237}, anonymised for review. The
+repository contains \texttt{astron\_mi/} (model loading, tokenisation, activation hooks, physics
+decoding, dictionary learning), 23 experiment scripts in \texttt{experiments/}, the recorded
+outputs in \texttt{results/}, and the \LaTeX{} source of this manuscript.
+
+Two files are the entry points for verification. \texttt{docs/claims-to-code.md} maps every
+numbered claim in this paper to the script that produced it and the JSON key path that holds it.
+\texttt{RESULTS.md} is the full experiment log, including measurements not reported here and the
+caveats attached to each. Every figure is regenerated from the recorded JSON by
+\texttt{experiments/make\_paper\_figures.py} with no live model call, so \texttt{make figures}
+reproduces all six figures in minutes without the data or the weights; a test suite checks that
+each cited result file is present and that the figure pipeline runs.
+
+Reproducing the JSON itself requires the data and a GPU-class device. All measurements are
+against \texttt{polymathic-aion} 0.0.2 with weights \texttt{aion-base} revision
+\texttt{40541618} and \texttt{aion-large} revision \texttt{cfdb89e8}; \texttt{requirements.txt}
+pins the environment. The data are public and not redistributed: \texttt{docs/data.md} documents
+the expected on-disk schema and how to rebuild the \SI{115}{GiB} PROVABGS--DESI--Legacy
+cross-match \citep{hahn2023provabgs,dey2019legacy,desi2024edr} and the MultimodalUniverse HSC
+PDR3 shard \citep{mmu2024multimodal,aihara2022hscpdr3}.
 
 \section*{Acknowledgements}
 
