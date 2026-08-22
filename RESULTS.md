@@ -1291,3 +1291,47 @@ a dictionary is not evidence about dictionaries.
 
 Note: dictionary training on MPS is not bit-reproducible — the same config re-run gave alive
 100.0% vs 53.9% across attempts — so the quoted seed spread includes run-to-run nondeterminism.
+
+---
+
+## E1c — Correlated detection misses (sensitivity test for E1b)
+
+E1b drew the missed objects **uniformly**. Real detection misses are not a random subsample, so
+this measures the selection empirically and re-propagates it. 40 draws per arm, miss count held
+fixed at 35/960 so only the *selection rule* varies, faithful transplant representation in both.
+
+**Part A — the selection is real and strong.** Over the same 5000 cutouts (3.68%, 184 misses):
+
+| r mag | n | p(miss) |
+|---|---|---|
+| 13.37–18.05 | 605 | 0.33% |
+| 19.06–19.34 | 604 | 1.99% |
+| 19.81–20.03 | 604 | **7.62%** |
+
+A ~20x gradient, monotone over 7 of 8 bins, Mann-Whitney **p = 4.9e-24**; missed objects are
+0.49 mag fainter. Propagating it does shift *which* objects are missed toward higher redshift:
+median z of the missed population **0.240 -> 0.274, paired p = 9.8e-10**.
+
+**Part B — but it does not measurably change the bias.**
+
+| arm | worst-bin median | 16–84% | breaches requirement |
+|---|---|---|---|
+| uniform | 0.71x | 0.47–1.27x | 12/40 draws (30%) |
+| correlated | 0.88x | 0.51–1.24x | 17/40 draws (42%) |
+
+Ratio of medians 1.24x, but **paired Wilcoxon p = 0.50**, Mann-Whitney p = 0.22, correlated
+higher in only 23/40 draws. Lower-variance statistic (mean across bins) 1.15x, p = 0.40.
+Breach rates 12/40 vs 17/40, Fisher p = 0.18. The `+ spectra` control is unmoved
+(0.009x -> 0.007x).
+
+**Conclusion: the uniform-draw assumption is demonstrably wrong in detail and immaterial in
+effect.** The referee objection is answered empirically, and negatively.
+
+**Second finding, which does change how E1b should be reported.** The realisation-to-realisation
+scatter is large (16–84%: 0.47–1.27x). E1b's headline 0.68x was one draw from that distribution,
+and its "breaches in no bins" is a property of that draw: across 40 realisations **30% breach the
+requirement in at least one bin**. The ensemble median with its spread is the honest statistic,
+not a single realisation.
+
+Note: an interim 12-draw ensemble gave uniform 0.65x / 8% breaching; both moved at 40 draws
+(0.71x / 30%). The 12-draw figures were small-sample noise.

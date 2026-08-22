@@ -57,8 +57,11 @@ We quantify the consequence. The Legacy Survey pipeline \citep{dey2019legacy} le
 targets with no segment covering their position, measured over 5000 cutouts. Representing such a
 miss by the segmentation fields the pipeline actually returns when it misses, and propagating
 that measured rate through \aion{}'s photometric redshifts, shifts the mean redshift of
-tomographic bins by up to 0.68 times the LSST DESC requirement \citep{lsstdesc2018srd}---one
-failure mode consuming two-thirds of the entire error budget without breaching it. Adding
+tomographic bins by a median 0.71 times the LSST DESC requirement \citep{lsstdesc2018srd} over
+40 miss assignments and exceeds it in 12 of them---one routine failure mode consuming most of
+the error budget, and occasionally all of it. Drawing the missed objects by their measured
+magnitude-dependent miss probability rather than uniformly leaves this unchanged within the
+realisation scatter. Adding
 positional errors of the observed magnitude takes the worst bin to 8.3 times the requirement,
 consistent with our finding that the model is far more sensitive to \emph{where} the mask is
 than to its shape.
@@ -404,7 +407,9 @@ different evidence.
 \centering\small
 \caption{Induced tomographic bias $\dzreq$, against the requirement 0.003. A detection miss is
 represented by a segmentation field transplanted from the 184 measured misses, not by an
-all-zero field. Redshifts read with the posterior median. Bold exceeds the requirement. $n=960$.}
+all-zero field. Redshifts read with the posterior median. Bold exceeds the requirement. $n=960$.
+Per-bin values are the single realisation plotted in Fig.~\ref{fig:impact}b; the Scenario-1
+ensemble over 40 miss assignments has worst-bin median $0.71\times$ the requirement.}
 \label{tab:tomo}
 \begin{tabular}{lcccc}
 \toprule
@@ -449,18 +454,25 @@ receive a transplanted miss field, the remaining objects receive a positional di
 the $8.3\times$ does not double-count the miss. (v) The displacement draws come from the observed
 distribution of central-segment centroid offsets, which mixes genuine astrometric and detection
 error with real morphological asymmetry; treating all of it as error is what makes Scenario 2 a
-plausible magnitude, and an upper bound on the positional contribution. (vi) We report a single realisation of the miss
-assignment at the measured rate, not an ensemble over draws. Taken together, Scenario 1 is a bounded estimate under the
-assumptions above and Scenario 2 an upper bound; measuring the systematic as realised in a
-survey would require the injection frameworks noted in the limitations.
+plausible magnitude, and an upper bound on the positional contribution. (vi) Which objects are missed is itself a draw, so
+Scenario 1 is reported as an ensemble of 40 assignments rather than one realisation; Scenario 2
+is a single realisation and is quoted as an upper bound only. Taken together, Scenario 1 is a
+bounded estimate under the assumptions above and Scenario 2 an upper bound; measuring the
+systematic as realised in a survey would require the injection frameworks noted in the
+limitations.
 
 The result is sensitive to this choice by a factor of four, which is why we state it
 explicitly: the same miss rate propagated through an all-zero field would breach the requirement
-by $2.7\times$ in two of four bins, against $0.68\times$ and no breach for the empirical
-representation (Fig.~\ref{fig:impact}b). The faithful number still carries weight for a survey error
-budget: a single routine pipeline failure consumes two-thirds of the allowance for the mean
-redshift of a tomographic bin, on a model whose output carries no sign that anything has gone
-wrong. On its own it leaves \aion{} inside the requirement.
+by $2.7\times$ in two of four bins, against $0.88\times$ for the empirical representation
+(Fig.~\ref{fig:impact}b).
+
+Across 40 miss assignments the worst-bin bias has median $0.71\times$ the requirement with a
+16--84\,\% range of $0.47$--$1.27\times$, and 12 of the 40 realisations exceed the requirement in
+at least one bin. The scatter matters as much as the median: a single routine pipeline failure
+consumes roughly two-thirds of the allowance for the mean redshift of a tomographic bin in the
+typical case, and the whole of it in about a third of realisations, on a model whose output
+carries no sign that anything has gone wrong. In the median \aion{} stays inside the
+requirement, but not with margin to spare.
 
 What does breach the requirement is position. Adding displacements of the observed magnitude
 takes the worst bin to $8.3\times$ and puts three of four bins over, which is the same ordering
@@ -478,10 +490,38 @@ offsets measured from 5000 real Legacy Survey segmentation maps. \textbf{(b)} In
 tomographic mean redshift against the LSST DESC requirement. The measured detection-miss rate
 alone reaches two-thirds of the requirement without breaching it; adding positional errors of
 the observed magnitude breaches it in three of four bins, and adding spectra removes the effect.
-The grey curve repeats the imaging-only propagation with an all-zero segmentation
-field instead of an empirically sampled one: the sensitivity quantified in \S\ref{sec:impact}.}
+The shaded band is the 16--84\,\% range of the imaging, measured-miss-rate curve
+over 40 miss assignments; the solid curve is one realisation from within it. The grey curve
+repeats the imaging-only propagation with an all-zero segmentation field instead of an
+empirically sampled one: the sensitivity quantified in \S\ref{sec:impact}.}
 \label{fig:impact}
 \end{figure}
+
+\subsection{Are the misses a random subsample?}
+\label{sec:corrmiss}
+
+Scenario 1 draws the missed objects uniformly, and real detection misses are not uniform. We
+measured the selection instead of assuming it. Over the same 5000 cutouts, the miss probability
+rises monotonically with $r$-band magnitude from 0.33\,\% in the brightest eighth of the sample
+to 7.62\,\% in the second-faintest---a factor of 20, with missed objects a median
+\SI{0.49}{mag} fainter than detected ones (Mann--Whitney $p=5\times10^{-24}$;
+Appendix~\ref{app:miss} gives the bin table). The selection is real and it is strong.
+
+Re-drawing the same number of misses with probability proportional to that measured
+$p(\text{miss}\mid\text{mag})$ does shift which objects are lost: the median redshift of the
+missed population moves from 0.240 to 0.274 across 40 paired draws ($p=1\times10^{-9}$). The
+tomographic bias, however, barely responds. The worst-bin median rises from $0.71\times$ to
+$0.88\times$ the requirement, a ratio of 1.24, but the correlated arm is higher in only 23 of 40
+paired draws and the difference sits well inside the realisation scatter (Wilcoxon $p=0.50$; a
+lower-variance statistic, the mean across bins, gives 1.15 at $p=0.40$). Realisations breaching
+the requirement go from 12/40 to 17/40 ($p=0.18$). Supplying spectra leaves the bias at
+$0.007$--$0.009\times$ the requirement under either rule.
+
+Magnitude selection therefore fails to propagate into the bin means, for a reason visible in the
+sample: in a magnitude-limited bright-galaxy survey at these redshifts, apparent magnitude and
+redshift are only loosely coupled, so a strong cut in magnitude is a weak one in $z$. The
+uniform draw is wrong in detail and immaterial in effect at this precision. We would not expect
+that to hold for a deeper, higher-redshift sample where the two are tightly coupled.
 
 \subsection{Mitigation}
 
@@ -742,7 +782,11 @@ give a controlled test of observing-condition dependence and were not used here.
 evidence is two points. The corrupted-scalar arm of \S\ref{sec:general} bounds the behaviour
 rather than estimating a field rate. The miss representation of \S\ref{sec:impact} is resampled
 from only 184 measured cases in one survey at one depth, so its shape---not the 3.68\,\% rate,
-which is directly counted---is the least well constrained input to that number. Tomographic bins in \S\ref{sec:impact} are defined on true
+which is directly counted---is the least well constrained input to that number. The
+magnitude-selection test of \S\ref{sec:corrmiss} conditions on apparent magnitude alone;
+surface brightness, size and local blending are plausible additional predictors of a miss that
+we have not separated, and the null it reports is specific to this sample's weak
+magnitude--redshift coupling. Tomographic bins in \S\ref{sec:impact} are defined on true
 redshift rather than on the model's own estimate, isolating the mask effect from
 binning-induced selection. The dictionary sweep varies width, sparsity and seed but stays at
 one layer, with features chosen by activation gap rather than by measured causal effect; and
@@ -762,9 +806,11 @@ not discount metadata that contradicts the image.
 \item The mechanism is detection gating---presence at the field centre---not aperture
 photometry; deblending errors do not propagate, but detection and positional errors do.
 \item The effect grows with model scale.
-\item In photometric-only inference, the measured detection-miss rate alone consumes two-thirds
-of the LSST DESC error budget for tomographic mean redshift, and observed positional errors take
-it to $8.3\times$ the requirement.
+\item In photometric-only inference, the measured detection-miss rate alone consumes a median
+two-thirds of the LSST DESC error budget for tomographic mean redshift and exceeds it in 12 of
+40 realisations; observed positional errors take the worst bin to $8.3\times$ the requirement.
+Drawing the misses by their measured magnitude dependence rather than uniformly does not change
+this.
 \item Withholding the detection channel removes it at no measurable cost; a generic substitute
 mask is worse than either option.
 \item The image tokeniser is collapsed to $\sim$28 effective brightness-ordered states, and the
@@ -812,6 +858,38 @@ tokenisation is unaffected, so this does not touch any HSC result reported here.
 \item Preprocessing mutates caller tensors in place, and \texttt{tok\_z} carries a 1025th
 sentinel code with no value bucket.
 \end{enumerate}
+
+\section{The measured detection-miss selection}
+\label{app:miss}
+
+Table~\ref{tab:missmag} is the empirical $p(\text{miss}\mid\text{mag})$ underlying
+\S\ref{sec:corrmiss}, counted over the same 5000-cutout scan that gives the 3.68\,\% rate. Bins
+are octiles of $r$-band magnitude, so each holds roughly 605 objects. Rates are raw counts; the
+weights used for the correlated draw shrink these toward the global rate with 25 pseudo-counts,
+so that a bin which happens to contain no misses does not make its objects unmissable by
+construction.
+
+\begin{table}[H]
+\centering\small
+\caption{Detection-miss rate against $r$-band magnitude, over 5000 real cutouts (184 misses).
+The trend is monotone across seven of eight bins; missed objects are a median \SI{0.49}{mag}
+fainter than detected ones, at Mann--Whitney $p=5\times10^{-24}$.}
+\label{tab:missmag}
+\begin{tabular}{lrr}
+\toprule
+$r$ magnitude & $n$ & $p(\text{miss})$ (\%) \\
+\midrule
+$13.37$--$18.05$ & 605 & 0.33 \\
+$18.05$--$18.67$ & 604 & 0.83 \\
+$18.67$--$19.06$ & 605 & 0.99 \\
+$19.06$--$19.34$ & 604 & 1.99 \\
+$19.34$--$19.55$ & 604 & 3.81 \\
+$19.55$--$19.81$ & 605 & 6.12 \\
+$19.81$--$20.03$ & 604 & 7.62 \\
+$20.03$--$20.30$ & 605 & 6.61 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \section{The dictionary sweep in full}
 \label{app:sweep}

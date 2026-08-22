@@ -15,6 +15,7 @@ refer to `paper/main.pdf`.
 | 3.6 | Scaling; Table 3 | `d2e_scale_replication.py` | `d2e_scale.json` | `models.{base,large}.intervention.*` |
 | 4.1 | Incidence 3.68%; Fig 3a | `e1b_faithful_miss.py` | `e1b_faithful_miss.json` | `part_a.*` |
 | 4.2 | Tomographic bias; Table 4, Fig 3b | `e1b_faithful_miss.py` | `e1b_faithful_miss.json` | `part_b.by_config['img|miss_real'].bins` |
+| 4.4 | Correlated-miss sensitivity; Appendix C | `e1c_correlated_miss.py` | `e1c_correlated_miss.json` | `part_a.p_miss_by_mag_bin_raw`, `draws.{uniform,correlated}` |
 | 4.3 | Mitigation; Table 5, Fig 4a | `d2d_mitigation.py` | `d2d_mitigation.json` | `quality.<config>.<readout>` |
 | 5.1 | Codebook utilisation; Table 6, Fig 5a | `a0b_code_frequency.py` | `a0b_code_frequency.json` | `modalities.<modality>.{codes_emitted,perplexity}` |
 | 5.1 | HSC codebook containment | `a0c_hsc_codebook.py` | `a0c_hsc_codebook.json` | `{codes_emitted,perplexity,contained_in_legacy}` |

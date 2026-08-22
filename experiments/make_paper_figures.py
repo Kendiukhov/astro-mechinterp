@@ -171,6 +171,19 @@ def fig3():
         ax[1].set_xticks(xs)
         ax[1].set_xticklabels([f"[{x['lo']:.2f},{x['hi']:.2f})" for x in b],
                               rotation=30, ha="right")
+    # 16-84% band across the 40-draw miss-assignment ensemble (E1c), so the reader sees the
+    # realisation scatter rather than one draw.
+    e1c = load("e1c_correlated_miss.json")
+    if e1c:
+        per = {}
+        for dr in e1c["draws"]["uniform"]:
+            for b in dr["img"]["bins"]:
+                per.setdefault((b["lo"], b["hi"]), []).append(b["shift_over_1pz"])
+        keys = sorted(per)
+        lo = [float(np.percentile(per[k], 16)) for k in keys]
+        hi = [float(np.percentile(per[k], 84)) for k in keys]
+        ax[1].fill_between(np.arange(len(keys)), lo, hi, color=C["gate"], alpha=0.16,
+                           lw=0, zorder=1, label="imaging, 16--84% over draws")
     ax[1].axhline(req, color="k", ls="-", lw=1.2, label="LSST SRD requirement")
     # symlog, not log: three of the "+ spectra" Scenario-1 bins are exactly zero and must
     # sit on the axis rather than be floored to a fictitious residual bias.

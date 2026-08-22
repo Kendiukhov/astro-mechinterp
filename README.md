@@ -23,7 +23,7 @@ catalogue-derived channels: contradicted catalogue photometry leaves the model *
 worse** than supplying no metadata at all.
 
 Propagating the survey's own measured 3.68 % detection-miss rate through the model's photometric
-redshifts shifts tomographic mean redshifts by up to **0.68×** the LSST DESC requirement, and
+redshifts shifts tomographic mean redshifts by a median **0.71×** the LSST DESC requirement, and
 observed positional errors take that to **8.3×**. Withholding the detection channel removes the
 vulnerability at no measurable cost.
 
@@ -36,7 +36,8 @@ vulnerability at no measurable cost.
 | Deblending decisions do not propagate (R = −0.006 over 322 real blends) | §3.3 | `d2g_severe_blends.py` |
 | Metadata preference is general: wrong catalogue scalars ⇒ 9× worse than none | §3.5 | `e2_metadata_preference.py` |
 | The vulnerability grows with model scale (1.62× base → large) | §3.6 | `d2e_scale_replication.py` |
-| 3.68 % detection-miss rate ⇒ 0.68× the LSST DESC requirement | §4 | `e1b_faithful_miss.py` |
+| 3.68 % detection-miss rate ⇒ median 0.71× the LSST DESC requirement | §4 | `e1b_faithful_miss.py` |
+| Miss rate is 20× magnitude-dependent, but that does not change the bias | §4.4 | `e1c_correlated_miss.py` |
 | Withholding the mask is free; a generic disc is +220 % worse | §4.3 | `d2d_mitigation.py` |
 | Image codec resolves ~28 effective states on source patches vs 934 for spectra | §5.1 | `a0b_code_frequency.py` |
 | Image codes form a one-dimensional brightness ladder | §5.2 | `b4_code_semantics.py` |
@@ -111,7 +112,7 @@ astron_mi/              library
   data.py                 lazy HDF5 reader, batching, sentinel masking
   sae.py                  BatchTopK sparse autoencoder + PCA baseline
 
-experiments/            23 scripts, one per result (see docs/claims-to-code.md)
+experiments/            24 scripts, one per result (see docs/claims-to-code.md)
 results/                per-experiment JSON + diagnostic PNGs (committed)
 paper/                  LaTeX source, figures, and the build for submission
 docs/                   claim mapping, data instructions, findings summary

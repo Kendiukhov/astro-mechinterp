@@ -70,9 +70,10 @@ supplying no metadata at all. Causal interventions identify the mechanism as det
 ($r=0.30$), and across 322 real blended systems the model ignores entirely how the pipeline
 partitioned the light ($R=-0.006$). We price the consequence: propagating the survey's own
 measured 3.68\,\% detection-miss rate, represented by the segmentation fields the pipeline
-actually returns when it misses, shifts tomographic mean redshifts by up to 0.68 times the LSST
-DESC requirement---one failure mode consuming two-thirds of the error budget---while observed
-positional errors take it to 8.3 times. Withholding the detection channel removes the
+actually returns when it misses, shifts tomographic mean redshifts by a median 0.71 times the
+LSST DESC requirement over 40 miss assignments and exceeds it in 12 of them, unchanged when the
+missed objects are drawn by their measured magnitude-dependent miss probability rather than
+uniformly; observed positional errors take the worst bin to 8.3 times. Withholding the detection channel removes the
 vulnerability at no measurable cost, and the effect grows with model scale. Two further limits
 are in the tokeniser, not the transformer: the image codec resolves 28 effective states on
 source patches against 934 for the spectrum codec, and the redshift readout is

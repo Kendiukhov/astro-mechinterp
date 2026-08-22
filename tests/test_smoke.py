@@ -34,6 +34,7 @@ CITED = [
     ("c1_redshift.json", ("rest_frame", "profile")),
     ("c1b_aliases.json", ("fail_rate_halpha",)),
     ("d1b_sae_sweep.json", ("configs",)),
+    ("e1c_correlated_miss.json", ("part_a", "p_miss")),
 ]
 
 
