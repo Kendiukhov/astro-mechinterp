@@ -23,11 +23,11 @@
 \newcommand{\dmag}{|\Delta\mathrm{mag}|}
 \newcommand{\dzreq}{|\Delta\langle z\rangle|/(1+z)}
 
-\title{\bfseries What does an astronomical foundation model read?\\
-Mechanistic interpretability of \aion{}}
+\title{\bfseries A survey detection channel overrides the pixels in an astronomical
+foundation model,\\ and biases tomographic mean redshifts}
 
-\author[1]{Author Name}
-\affil[1]{Affiliation}
+\author[1]{Ihor Kendiukhov}
+\affil[1]{Independent researcher}
 
 \date{\today}
 
@@ -36,9 +36,12 @@ Mechanistic interpretability of \aion{}}
 
 \begin{abstract}
 \noindent
-\aion{} is a 39-modality transformer foundation model for astronomy, trained on more than
-$2\times10^{8}$ objects from five surveys and released with open weights
-\citep{parker2025aion}. We present the first mechanistic interpretability study of it.
+Foundation models for astronomy are trained on survey pixels together with the catalogue
+products derived from those pixels. Those catalogues are incomplete at a measurable rate, and we
+show that a model trained on both inherits that incompleteness as a physical systematic.
+\aion{} \citep{parker2025aion}---a 39-modality transformer trained on more than
+$2\times10^{8}$ objects from five surveys and released with open weights---is the instance we
+audit, using causal interventions on its inputs.
 
 Our central finding is that \aion{} \emph{defers to catalogue-derived metadata in preference to
 the raw pixels, and does not discount that metadata when it contradicts them}. Holding image
@@ -113,7 +116,8 @@ together with its transcoder and crosscoder variants \citep{dunefsky2024transcod
 These were developed largely for language models, where the superposition hypothesis
 \citep{elhage2022toy} and the linear representation hypothesis \citep{park2024linear} frame the
 questions. Their transfer to scientific models is an active and, so far, mixed story: sparse
-autoencoders have been applied to galaxy morphology \citep{wu2025euclid}, protein language
+autoencoders have been applied to galaxy morphology
+\citep{wu2025euclid,wu2025sparsefeature}, protein language
 models \citep{simon2025interplm}, single-cell models \citep{pedrocchi2025singlecell} and vision
 encoders \citep{zaigrajew2025clip}, while an interpretability study of a sibling
 continuum-dynamics foundation model found features that were only piecewise consistent and
@@ -933,7 +937,7 @@ Width & $k$ & Seed & FVU & FVU (PCA, same $k$) & Alive (\%) & Recovery (\%) \\
 \section*{Data and code availability}
 
 All code, per-experiment JSON and the figure-generation script are available at
-\url{https://anonymous.4open.science/r/astro-mechinterp-E237}, anonymised for review. The
+\url{https://github.com/Kendiukhov/astro-mechinterp}. The
 repository contains \texttt{astron\_mi/} (model loading, tokenisation, activation hooks, physics
 decoding, dictionary learning), 23 experiment scripts in \texttt{experiments/}, the recorded
 outputs in \texttt{results/}, and the \LaTeX{} source of this manuscript.
@@ -960,6 +964,27 @@ This audit was only possible because the \aion{} authors released weights, token
 training code openly, including the components whose limitations we report here. We thank the
 Legacy Survey, DESI and Hyper Suprime-Cam collaborations for the public data products this work
 depends on.
+
+\paragraph{Use of generative AI.} A large language model (Anthropic Claude) was used
+substantially throughout this work: to write the analysis library and the experiment scripts, to
+run the experiments, to generate the figures, and to draft this manuscript. It was used as an
+instrument under the author's direction; the author is responsible for all content.
+
+Because generative AI was used for calculation, analysis and data visualisation, we set out the
+steps taken to validate it. (i) Every numeric claim in this paper is checked programmatically
+against the recorded JSON that produced it, and the checking script is in the repository; the
+figures are regenerated from that same JSON with no model call, so a figure cannot disagree with
+the text. (ii) The manuscript was audited against the stored results by an independent
+adversarial pass, which found and corrected defects including a stale table value that had
+propagated into the abstract, a correlation quoted from a code comment rather than from output,
+and a negative control reported as zero when it was one. (iii) Experiments were checked for
+protocol fidelity against the experiment they were designed to extend; one dictionary-learning
+sweep was discarded and re-run because it had trained on the wrong activation set, and the
+superseded run is retained in the repository. (iv) All \num{84} bibliography entries were
+machine-checked to resolve to a live DOI, arXiv identifier or archival record. (v) A test suite
+verifies that every result file cited here exists and that the figure pipeline runs from stored
+data alone. (vi) Results that changed a conclusion were re-derived independently before being
+reported; two published claims of ours did not survive that process and were withdrawn.
 
 \bibliography{refs}
 
