@@ -205,6 +205,28 @@ file is \textsc{healpix}-ordered, and an initial analysis using the first $N$ ro
 contiguous $2.3^\circ\times2.5^\circ$ field---gave a redshift probe $R^2$ of 0.48 where a
 random draw gives 0.91.
 
+\paragraph{Interventions, in plain terms.} Two operations recur below, and neither assumes
+familiarity with the interpretability literature.
+
+The first is an \emph{input} intervention: we alter one input channel---usually the segmentation
+map---while holding every other input byte-identical, and record how the quantity the model
+reports moves. Each such effect is quoted against a \emph{matched placebo}: an edit of
+comparable size to a channel that should not matter, here displacing the right-ascension token
+by 250 codebook steps. The placebo is what rules out the possibility that merely perturbing an
+input moves the answer.
+
+The second is an \emph{internal} intervention. The encoder holds each object as a vector of
+$d=768$ numbers at each of its twelve blocks. We add a fixed vector $v$ to that representation
+at one block and let the remaining blocks run---the operation the interpretability literature
+calls \emph{steering}. The $v$ we add is simply the difference between the average internal
+state under a true mask and under a displaced one, a difference in means. If that direction is
+what carries the gate, adding it back should undo the damage a wrong mask does. We report
+\emph{recovery}: the fraction of the gate-induced collapse restored, where 0 is the displaced-mask
+value and 1 the true-mask value. Every candidate direction is rescaled to the same length before
+it is added (\emph{matched norm}), so the coefficient $\alpha$ means the same size of
+intervention whichever method produced the direction, and a random vector of that same length is
+always run as a control.
+
 \paragraph{Readouts.} Unless stated otherwise, scalar quantities are read as the \emph{mean} of
 the token posterior. The exceptions, where the \emph{median} is used, are
 Table~\ref{tab:tomo}, the redshift-precision figures of \S\ref{sec:tok} and all of
@@ -316,16 +338,23 @@ severity, including systems where the central segment holds under 40\,\% of the 
 \textbf{Deblending errors therefore do not propagate through this channel.} The vulnerability is
 to detection and position.
 
-\subsection{The gate is partially one direction}
+\subsection{Is the gate carried by a single direction?}
 
-Difference-in-means between activations under a true and a displaced mask, injected at encoder
-layer 6, recovers 46\,\% of the flux collapse at $\alpha=4$ against 5\,\% for a matched-norm
-random vector ($n=256$ objects, with the direction estimated on those same objects; the
-comparable figures in \S\ref{sec:sae} come from a different harness and are not on the same
-$\alpha$ scale). Direction consistency across objects is 0.80, but 22 dimensions carry 90\,\% of
-the residual variation. We inject at encoder layer 6 throughout and did not test other injection
-sites, so we make no claim about where in the encoder the gate is computed. Peak recovery is uninformative here: at $\alpha=8$ the gate
-direction recovers 89\,\% while the random control reaches 66\,\%.
+If the model represents ``a source is present here'' along one axis of its internal state, then
+adding that axis back should repair a readout that a displaced mask has collapsed. We test this
+directly. Taking the average internal state of 256 objects under a true mask, subtracting their
+average under a displaced mask, and adding the difference back at encoder block 6 recovers
+46\,\% of the flux collapse at $\alpha=4$; a random vector of identical length recovers 5\,\%.
+So a substantial part of the gate is carried by one direction, and it is a direction that a
+subtraction of averages finds.
+
+It is not the whole story. The per-object directions point the same way only to a consistency of
+0.80, and 22 of the 768 dimensions are needed to capture 90\,\% of what remains. Two cautions on
+reading these numbers. Large interventions restore the readout non-specifically, so peak recovery
+means little: at $\alpha=8$ the gate direction reaches 89\,\% but the random control reaches
+66\,\%, which is why we quote the pre-registered $\alpha=4$ throughout. And we inject at block 6
+only, so this locates nothing about \emph{where} the gate is computed. The comparable figures in
+\S\ref{sec:sae} come from a separate harness and are not on the same $\alpha$ scale.
 
 \subsection{The behaviour generalises across channels}
 \label{sec:general}
@@ -681,12 +710,27 @@ without being line-\emph{brittle}.
 \section{Sparse dictionaries are unreliable causal handles}
 \label{sec:sae}
 
-A BatchTopK sparse autoencoder \citep{bussmann2024batchtopk} (8192 features, $k=32$, trained on
-\num{288000} paired token activations from layer 6, i.e.\ \num{576000} rows pooled across the
-gated and ungated conditions) reconstructs at FVU 0.032 against PCA's 0.242 at matched
-sparsity---$7.6\times$ better---and yields clearly gate-selective features. The question we
-pre-registered is whether that buys causal control: can a small set of those features, used as a
-steering vector at matched intervention norm, beat difference-in-means at restoring the readout?
+A sparse autoencoder is a learned dictionary over the internal states of \S\ref{sec:methods}:
+it fits a set of directions such that any activation can be rewritten as a sum of just $k$ of
+them, in the hope that individual dictionary entries correspond to individually meaningful
+features. It is the standard modern tool for this question, and the reason to want one here is
+that its entries would be candidate handles on the gate---more targeted than the single
+difference-in-means direction of \S\ref{sec:gate}.
+
+Ours compresses the activations well. A BatchTopK autoencoder
+\citep{bussmann2024batchtopk} with 8192 dictionary entries and $k=32$ active at a time, trained
+on \num{288000} paired activations from block 6 (\num{576000} rows, pooling the true-mask and
+displaced-mask conditions so the dictionary sees both), reconstructs at a fraction of variance
+unexplained of 0.032, where 0 would be perfect. Principal component analysis restricted to the
+same number of components---the fair like-for-like, since it is also a linear code of the same
+sparsity---reaches only 0.242, so the dictionary is $7.6\times$ better as a compression. It also
+contains entries that fire far more under a true mask than a displaced one: features that look,
+by inspection, like the gate.
+
+The question we pre-registered is whether looking like the gate buys control over it. Building a
+steering vector from the most gate-selective entries and adding it at matched norm, exactly as
+in \S\ref{sec:gate}: does it beat the plain difference in means at restoring the collapsed
+readout?
 
 Because one point in hyperparameter space cannot answer a question about a method, we test 15
 dictionaries: widths 2048, 8192 and 32768 ($2.7\times$ to $43\times$ overcomplete) crossed with
