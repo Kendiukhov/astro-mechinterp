@@ -205,6 +205,25 @@ file is \textsc{healpix}-ordered, and an initial analysis using the first $N$ ro
 contiguous $2.3^\circ\times2.5^\circ$ field---gave a redshift probe $R^2$ of 0.48 where a
 random draw gives 0.91.
 
+\paragraph{Use of AI tools in the research process.} A large language model
+(Anthropic Claude) was used as an instrument throughout this work, under the author's direction:
+to write the analysis library and the 24 experiment scripts, to execute the experiments, and to
+produce the figures. Because that places it inside the research process rather than in
+manuscript preparation alone, we state what was done to validate it. Every numeric claim in this
+paper is checked programmatically against the recorded output that produced it, by a script in
+the repository, and every figure is regenerated from that same recorded output with no model
+call, so no figure can disagree with the text. The manuscript was audited against the stored
+results by an independent adversarial pass, which found and corrected defects including a stale
+table value that had propagated into the abstract, a correlation quoted from a code comment
+rather than from a run, and a negative control reported as zero when it was one. Experiments
+were checked for protocol fidelity against the experiment each was designed to extend; one
+dictionary-learning sweep was discarded and re-run because it had trained on the wrong
+activation set, and the superseded run is retained in the repository. All \num{84} bibliography
+entries were machine-checked to resolve to a live identifier. A test suite verifies that every
+result file cited here exists and that the figure pipeline runs from stored data alone. Results
+that changed a conclusion were re-derived before being reported; two conclusions we had reached
+did not survive that process and were withdrawn.
+
 \paragraph{Interventions, in plain terms.} Two operations recur below, and neither assumes
 familiarity with the interpretability literature.
 
@@ -1009,26 +1028,13 @@ training code openly, including the components whose limitations we report here.
 Legacy Survey, DESI and Hyper Suprime-Cam collaborations for the public data products this work
 depends on.
 
-\paragraph{Use of generative AI.} A large language model (Anthropic Claude) was used
-substantially throughout this work: to write the analysis library and the experiment scripts, to
-run the experiments, to generate the figures, and to draft this manuscript. It was used as an
-instrument under the author's direction; the author is responsible for all content.
+\section*{Declaration of generative AI and AI-assisted technologies in the manuscript
+preparation process}
 
-Because generative AI was used for calculation, analysis and data visualisation, we set out the
-steps taken to validate it. (i) Every numeric claim in this paper is checked programmatically
-against the recorded JSON that produced it, and the checking script is in the repository; the
-figures are regenerated from that same JSON with no model call, so a figure cannot disagree with
-the text. (ii) The manuscript was audited against the stored results by an independent
-adversarial pass, which found and corrected defects including a stale table value that had
-propagated into the abstract, a correlation quoted from a code comment rather than from output,
-and a negative control reported as zero when it was one. (iii) Experiments were checked for
-protocol fidelity against the experiment they were designed to extend; one dictionary-learning
-sweep was discarded and re-run because it had trained on the wrong activation set, and the
-superseded run is retained in the repository. (iv) All \num{84} bibliography entries were
-machine-checked to resolve to a live DOI, arXiv identifier or archival record. (v) A test suite
-verifies that every result file cited here exists and that the figure pipeline runs from stored
-data alone. (vi) Results that changed a conclusion were re-derived independently before being
-reported; two published claims of ours did not survive that process and were withdrawn.
+During the preparation of this work the author used Anthropic Claude in order to draft and edit
+the manuscript text, and to write the analysis code and produce the figures it reports (described
+in \S\ref{sec:methods}). After using this tool, the author reviewed and edited the content as
+needed and takes full responsibility for the content of the published article.
 
 \bibliography{refs}
 

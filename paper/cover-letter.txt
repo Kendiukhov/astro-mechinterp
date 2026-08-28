@@ -1,0 +1,66 @@
+To the Editors, Astronomy and Computing
+
+Dear Editors,
+
+I submit "A survey detection channel overrides the pixels in an astronomical foundation model,
+and biases tomographic mean redshifts" for consideration as a Full Length Article.
+
+The paper measures a systematic that a survey pipeline introduces into a foundation model
+trained on its outputs. AION-1 ingests the Legacy Survey segmentation map as an input modality.
+Holding the image tokens byte-identical and editing only that map changes every quantity the
+model reports - flux, size, ellipticity and redshift - by 110-4400 times a matched placebo, and
+causal interventions identify the mechanism as detection gating rather than masked aperture
+photometry. The consequence is priced against a survey requirement: the pipeline's own measured
+3.68% detection-miss rate, propagated with misses represented by the segmentation fields the
+pipeline actually returns when it misses, shifts tomographic mean redshifts by a median 0.71
+times the LSST DESC requirement over 40 miss assignments and exceeds it in 12 of them. Observed
+positional errors take the worst bin to 8.3 times. The paper ends with an operational
+recommendation that costs nothing measurable: withhold the detection channel when the detection
+cannot be vouched for.
+
+I believe this sits within the scope the journal describes when it encourages "reports on
+practice which describe the outcomes (positive and negative) of the practical application of
+informatics techniques within astronomy research and operations", and under the listed topics of
+astrostatistics and machine learning, data processing pipelines and automated systems, and
+astroinformatics and analytics. The work is an application of computing to astronomy with a
+consequence for survey operations, rather than computer science research: the interpretability
+machinery is the instrument, and the measured quantity is a redshift systematic.
+
+Two precedents in the journal are the closest antecedents I am aware of, and both are cited in
+the manuscript: Sensitivity probes of deep networks used for lens finding in DES imaging
+(Astronomy and Computing 2021, doi:10.1016/j.ascom.2021.100535), and systematic biases arising
+when deep networks annotate large catalogues of astronomical images (Astronomy and Computing
+2022, doi:10.1016/j.ascom.2022.100545).
+
+Three disclosures.
+
+First, a preprint of this manuscript is posted as arXiv:2608.23626, under a CC BY 4.0 licence. I
+note the licence explicitly so that it is on the record at submission. I select the subscription
+publishing route and am not requesting open access.
+
+Second, the study audits a model released by the Polymathic AI collaboration. I have no
+affiliation with, funding from, or other connection to that group, and no competing interest to
+declare. I would ask that referees be chosen from outside that collaboration. The manuscript is
+framed throughout as a property of catalogue-conditioned training data that any similarly
+trained model would inherit, not as a criticism of one group's work, and the study was only
+possible because they released weights, tokenisers and code openly.
+
+Third, a large language model was used substantially in this work, to write the analysis code,
+run the experiments, produce the figures and draft the text. This is declared in the manuscript
+in the form the journal prescribes, and because the use extended into the research process it is
+also described in the methods section, together with the steps taken to validate it: every
+numeric claim is checked programmatically against the recorded output that produced it, every
+figure is regenerated from that output with no model call, and the full checking apparatus is in
+the public repository.
+
+All code, per-experiment outputs and the manuscript source are available at
+https://github.com/Kendiukhov/astro-mechinterp, with a table mapping every numbered claim in the
+paper to the script and output file that produced it. The data are public and the repository
+documents how to rebuild them.
+
+The manuscript is not under consideration elsewhere.
+
+Yours sincerely,
+
+Ihor Kendiukhov
+Independent researcher
