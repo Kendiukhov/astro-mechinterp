@@ -36,52 +36,55 @@ foundation model,\\ and biases tomographic mean redshifts}
 
 \begin{abstract}
 \noindent
-Foundation models for astronomy are trained on survey pixels together with the catalogue
-products derived from those pixels. Those catalogues are incomplete at a measurable rate, and we
-show that a model trained on both inherits that incompleteness as a physical systematic.
-\aion{} \citep{parker2025aion}---a 39-modality transformer trained on more than
-$2\times10^{8}$ objects from five surveys and released with open weights---is the instance we
-audit, using causal interventions on its inputs.
+Foundation models for astronomy are trained on two things at once: the survey pixels, and the
+catalogue products that a pipeline has already extracted from those same pixels. Those
+catalogues are incomplete at a measurable rate. We show that a model trained on both learns to
+trust the catalogue over the pixels, and that this converts a routine pipeline failure into a
+systematic error in the science. The model we audit is \aion{} \citep{parker2025aion}, a
+39-modality transformer trained on more than $2\times10^{8}$ objects from five surveys and
+released with open weights.
 
-Our central finding is that \aion{} \emph{defers to catalogue-derived metadata in preference to
-the raw pixels, and does not discount that metadata when it contradicts them}. Holding image
-pixels byte-identical and altering only the survey segmentation map changes every quantity the
-model reports---flux, size, ellipticity, redshift---by 110--4400 times a matched placebo.
-Displacing the mask by \SI{25}{px} reduces the $g$-band flux estimate by 79\,\% although every
-photon remains in the image. The mechanism is detection \emph{gating} rather than masked
-aperture photometry: the response tracks whether the mask asserts a source at the field centre
-($r=0.47$) more strongly than the light the mask encloses ($r=0.30$), and across 322 severely
-blended systems the model ignores entirely how the pipeline partitioned the light
-($R=-0.006\pm0.001$). The behaviour is not confined to the detection channel: corrupting the
-catalogue photometry moves the $g$-band readout by \SI{0.61}{mag}, leaving the model
-\emph{nine times worse than supplying no metadata at all}.
+One of its inputs is the survey segmentation map, which records where the pipeline believes the
+sources are. Holding every image pixel byte-identical and altering only that map changes every
+quantity the model reports---flux, size, ellipticity and redshift---by 110--4400 times a matched
+placebo edit that should do nothing. Displacing the mask by \SI{25}{px} cuts the $g$-band flux
+estimate by 79\,\%, with every photon still in the image. The model is not performing aperture
+photometry on the region the mask encloses; it is asking whether the mask marks a source at the
+field centre. That reading is what the measurements support: the response tracks central mask
+coverage ($r=0.47$) more strongly than the light the mask encloses ($r=0.30$), and across 322
+severely blended systems it ignores entirely how the pipeline divided the light between
+overlapping objects ($R=-0.006\pm0.001$). The same misplaced trust extends to other catalogue
+channels. Supplied with deliberately wrong catalogue photometry, the model moves its $g$-band
+answer by \SI{0.61}{mag}, ending up \emph{nine times worse than being given no catalogue
+information at all}.
 
-We quantify the consequence. The Legacy Survey pipeline \citep{dey2019legacy} leaves 3.68\,\% of
-targets with no segment covering their position, measured over 5000 cutouts. Representing such a
-miss by the segmentation fields the pipeline actually returns when it misses, and propagating
-that measured rate through \aion{}'s photometric redshifts, shifts the mean redshift of
-tomographic bins by a median 0.71 times the LSST DESC requirement \citep{lsstdesc2018srd} over
-40 miss assignments and exceeds it in 12 of them---one routine failure mode consuming most of
-the error budget, and occasionally all of it. Drawing the missed objects by their measured
+We then price the consequence for a cosmological measurement. The Legacy Survey pipeline
+\citep{dey2019legacy} leaves 3.68\,\% of its targets with no segment covering their position, a
+rate we count directly over 5000 real cutouts rather than assume. We represent such a miss by
+the segmentation fields the pipeline actually returns when it misses, and propagate that
+measured rate through \aion{}'s photometric redshifts. The mean redshift of tomographic bins
+shifts by a median 0.71 times the LSST DESC requirement \citep{lsstdesc2018srd} across 40 miss
+assignments, and exceeds it in 12 of them: one routine failure mode consuming most of the error
+budget, and occasionally all of it. Drawing the missed objects according to their measured,
 magnitude-dependent miss probability rather than uniformly leaves this unchanged within the
-realisation scatter. Adding
-positional errors of the observed magnitude takes the worst bin to 8.3 times the requirement,
-consistent with our finding that the model is far more sensitive to \emph{where} the mask is
-than to its shape.
-Supplying spectra removes the effect almost entirely, so the systematic is specific to
-photometric-only inference---the regime in which such a model is most attractive. Withholding
-the detection channel eliminates it at no measurable cost, whereas substituting a generic mask
-is substantially worse than either.
+scatter between realisations. Adding positional errors of the size actually observed takes the
+worst bin to 8.3 times the requirement---consistent with the model being far more sensitive to
+\emph{where} the mask sits than to its shape. Supplying spectra removes the effect almost
+entirely, so the systematic belongs specifically to photometric-only inference, which is the
+regime in which such a model is most attractive. Withholding the detection channel eliminates it
+at no measurable cost, while substituting a generic mask is substantially worse than either.
 
-Two further limitations live in the tokeniser rather than the transformer. Measured over
-$1.15\times10^{6}$ tokens, the image codec emits 8.3\,\% of its 4375 codes, and on patches
-containing the source its effective vocabulary is 28 codes against 934 of 1024 for the spectrum
-codec; those 28 states form a one-dimensional brightness ladder. The redshift readout is
-quantisation-limited rather than information-limited. Codebook utilisation is unchanged at
-$2.7\times$ the parameter count, so both persist under scaling. Finally, sparse dictionaries are unreliable as causal
+Two further limitations belong to the tokeniser rather than the transformer. Measured over
+$1.15\times10^{6}$ tokens, the image codec emits only 8.3\,\% of its 4375 available codes, and
+on the patches that contain the source it resolves an effective 28 states against 934 of 1024
+for the spectrum codec; those 28 states form a one-dimensional brightness ladder, so detail
+within a patch is discarded before the transformer sees it. The redshift readout is limited by
+the coarseness of its own output grid rather than by the information available. Neither improves
+at $2.7\times$ the parameter count. Finally, sparse dictionaries prove unreliable as causal
 handles on the gate: across 15 dictionaries spanning width, sparsity and seed, recovery spans
-26--75\,\% and moves by up to 18 points on the seed alone, thirteen of fifteen lose to
-difference-in-means, and reconstruction quality does not predict which will steer.
+26--75\,\% and moves by up to 18 points on the random seed alone, thirteen of the fifteen lose
+to a plain difference in means, and reconstruction quality does not predict which dictionary
+will steer.
 \end{abstract}
 
 \section{Introduction}
