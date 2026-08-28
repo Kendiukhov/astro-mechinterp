@@ -17,9 +17,15 @@ keywords:
 license: MIT
 authors:
   - name: "astro-mechinterp contributors"
+identifiers:
+  - type: other
+    value: "arXiv:2608.23626"
+    description: "arXiv preprint"
 preferred-citation:
   type: article
-  title: "Foundation models defer to their metadata channel: a causal audit of AION-1"
+  title: "A survey detection channel overrides the pixels in an astronomical foundation model, and biases tomographic mean redshifts"
   year: 2026
+  url: "https://arxiv.org/abs/2608.23626"
   authors:
-    - name: "astro-mechinterp contributors"
+    - family-names: "Kendiukhov"
+      given-names: "Ihor"

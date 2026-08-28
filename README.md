@@ -2,6 +2,8 @@
 
 **A causal audit of AION-1, a multimodal foundation model for astronomy.**
 
+Paper: [arXiv:2608.23626](https://arxiv.org/abs/2608.23626)
+
 This repository contains the code, per-experiment outputs and manuscript for a mechanistic
 interpretability study of [AION-1](https://arxiv.org/abs/2510.17960) (Polymathic AI), a
 40-table transformer trained on >2×10⁸ objects from five surveys.
@@ -140,7 +142,8 @@ and enforced in the library:
 
 ## Citing
 
-See [CITATION.cff](CITATION.cff). The manuscript is in `paper/`.
+See [CITATION.cff](CITATION.cff). The paper is [arXiv:2608.23626](https://arxiv.org/abs/2608.23626);
+its source is in `paper/`.
 
 ## License
 
