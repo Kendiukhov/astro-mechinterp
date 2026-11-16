@@ -25,8 +25,11 @@ OUT = ROOT / "paper" / "figs"
 OUT.mkdir(parents=True, exist_ok=True)
 
 plt.rcParams.update({
-    "font.size": 8, "axes.labelsize": 8, "axes.titlesize": 8.5,
-    "xtick.labelsize": 7, "ytick.labelsize": 7, "legend.fontsize": 6.5,
+    # PLOS requires Arial, Times or Symbol at 8-12 pt inside figures, and the figures are
+    # rasterised to TIFF for submission, so nothing below 8 pt may survive here.
+    "font.family": "sans-serif", "font.sans-serif": ["Arial", "Helvetica", "DejaVu Sans"],
+    "font.size": 9, "axes.labelsize": 9, "axes.titlesize": 9,
+    "xtick.labelsize": 8, "ytick.labelsize": 8, "legend.fontsize": 8,
     "axes.grid": True, "grid.alpha": 0.25, "grid.linewidth": 0.4,
     "axes.spines.top": False, "axes.spines.right": False,
     "figure.dpi": 200, "savefig.bbox": "tight", "pdf.fonttype": 42,
@@ -46,7 +49,7 @@ def fig1():
     d2, d2b = load("d2_segmap.json"), load("d2b_gating.json")
     if not (d2 and d2b):
         return
-    fig, ax = plt.subplots(1, 3, figsize=(7.1, 2.35))
+    fig, ax = plt.subplots(1, 3, figsize=(7.4, 2.8))
 
     order = ["image_only", "eroded_5", "real", "dilated_10", "shifted_10",
              "shifted_25", "swapped", "erased", "placebo_ra"]
@@ -88,7 +91,7 @@ def fig1():
     hi = max(e["img"][k][a] for k in reads
              for a in ("shifted_25", "swapped", "placebo_ra"))
     ax[2].set_ylim(top=hi * 400)
-    ax[2].legend(frameon=False, fontsize=5.6, loc="upper right",
+    ax[2].legend(frameon=False, fontsize=8, loc="upper right",
                  handlelength=1.3, handletextpad=0.5, borderaxespad=0.2,
                  labelspacing=0.3)
     fig.tight_layout(); fig.savefig(OUT / "fig1.pdf"); plt.close(fig)
@@ -100,7 +103,7 @@ def fig2():
     f, g = load("d2f_real_blends.json"), load("d2g_severe_blends.json")
     if not (f and g):
         return
-    fig, ax = plt.subplots(1, 2, figsize=(5.0, 2.35))
+    fig, ax = plt.subplots(1, 2, figsize=(5.4, 2.8))
 
     i = f["integration"]
     ax[0].errorbar([0], [i["R_median"]],
@@ -141,7 +144,7 @@ def fig3():
     e1 = load("e1_incidence_impact.json")
     if not e1:
         return
-    fig, ax = plt.subplots(1, 2, figsize=(7.1, 2.9),
+    fig, ax = plt.subplots(1, 2, figsize=(7.4, 3.1),
                            gridspec_kw={"width_ratios": [1, 1.7]})
     pa = e1["part_a_incidence"]["centroid_offset_px"]
     ks = ["median", "p90", "p99"]
@@ -191,7 +194,7 @@ def fig3():
     ax[1].set_ylim(bottom=0)
     ax[1].set_ylabel(r"$|\Delta\langle z\rangle|/(1+z)$")
     ax[1].set_title("(b) tomographic bias")
-    ax[1].legend(frameon=False, fontsize=5.6, loc="upper center",
+    ax[1].legend(frameon=False, fontsize=8, loc="upper center",
                  bbox_to_anchor=(0.5, -0.34), ncol=2, handlelength=1.8,
                  columnspacing=1.0)
     fig.tight_layout(); fig.savefig(OUT / "fig3.pdf"); plt.close(fig)
@@ -203,7 +206,7 @@ def fig4():
     d2d, e2 = load("d2d_mitigation.json"), load("e2_metadata_preference.json")
     if not (d2d and e2):
         return
-    fig, ax = plt.subplots(1, 2, figsize=(5.6, 2.35))
+    fig, ax = plt.subplots(1, 2, figsize=(6.0, 2.8))
 
     cfgs = ["img", "img+seg_real", "img+seg_disc", "spec", "spec+seg_real", "spec+seg_disc"]
     lab = ["img", "img\n+mask", "img\n+disc", "spec", "spec\n+mask", "spec\n+disc"]
@@ -238,7 +241,7 @@ def fig5():
         load("b4_code_semantics.json")
     if not (a0b and b4):
         return
-    fig, ax = plt.subplots(1, 3, figsize=(7.1, 2.35))
+    fig, ax = plt.subplots(1, 3, figsize=(7.4, 2.8))
 
     sp = a0b["image_split"]
     labs, vals, cols = ["image\n(source)", "image\n(sky)"], \
@@ -280,7 +283,7 @@ def fig6():
     c1, d1 = load("c1_redshift.json"), load("d1_gate_dictionary.json")
     if not (c1 and d1):
         return
-    fig, ax = plt.subplots(1, 2, figsize=(5.8, 2.35))
+    fig, ax = plt.subplots(1, 2, figsize=(6.4, 2.9))
 
     xr, pr = np.array(c1["rest_frame"]["x"]), np.array(c1["rest_frame"]["profile"])
     xo, po = np.array(c1["observed_frame"]["x"]), np.array(c1["observed_frame"]["profile"])
@@ -293,7 +296,7 @@ def fig6():
     for j, (lam, nm) in enumerate(lines):
         ax[0].axvline(lam, color=C["grey"], ls=":", lw=0.5)
         ax[0].text(lam, top * (0.93 if j % 2 == 0 else 0.55), nm, rotation=90,
-                   fontsize=5, ha="right", va="top", color=C["grey"])
+                   fontsize=8, ha="right", va="top", color=C["grey"])
     ax[0].set_xlabel(r"wavelength ($\AA$)")
     ax[0].set_ylabel("ablation effect / median")
     ax[0].set_title("(a) redshift is line-locked")
@@ -334,7 +337,7 @@ def fig6():
     ax[1].set_xlabel(r"steering coefficient $\alpha$ (matched norm)")
     ax[1].set_ylabel("% of collapse recovered")
     ax[1].set_title("(b) dictionaries: wide spread, no advantage")
-    ax[1].legend(frameon=False, fontsize=5.6, loc="upper left", handlelength=1.6,
+    ax[1].legend(frameon=False, fontsize=8, loc="upper left", handlelength=1.6,
                  labelspacing=0.3, borderaxespad=0.3)
     fig.tight_layout(); fig.savefig(OUT / "fig6.pdf"); plt.close(fig)
 

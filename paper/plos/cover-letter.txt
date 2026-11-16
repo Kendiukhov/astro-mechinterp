@@ -1,0 +1,61 @@
+Dear Editors,
+
+I submit "A survey detection channel overrides the pixels in an astronomical foundation model,
+and biases tomographic mean redshifts" for consideration as a Research Article in PLOS ONE.
+
+Astronomical foundation models are trained on survey images together with the catalogue
+products that a software pipeline has already extracted from those same images. Those
+catalogues fail at a measurable rate. This paper shows experimentally that a model trained on
+both learns to rely on the catalogue rather than the pixels, and measures what that costs a
+downstream scientific measurement.
+
+The work is primary research, not a commentary or a review. Its spine is a series of controlled
+interventions on a released model's inputs, each reported against a matched placebo and with
+bootstrap intervals. Holding every image pixel byte-identical and editing only the survey
+segmentation map moves every quantity the model reports by 110 to 4400 times a matched placebo
+edit. Further interventions localise the mechanism: the model responds to whether the mask
+marks a source at the field centre, not to the light the mask encloses, and across 322 blended
+systems it is entirely insensitive to how the pipeline divided light between overlapping
+objects. We then measure the pipeline's own failure rate directly over 5000 cutouts (3.68% of
+targets have no segment covering their position) and propagate it, obtaining a shift in
+tomographic mean redshift of a median 0.71 times the LSST Dark Energy Science Collaboration
+requirement across 40 realisations. The paper ends with a mitigation that costs nothing
+measurable.
+
+I believe this fits PLOS ONE's criteria. The journal evaluates research on scientific validity
+and methodology rather than perceived significance, and states that interdisciplinary work and
+negative results are in scope. Both matter here. The paper sits between machine learning and
+observational astronomy, and two of its results are negative: deblending errors do not
+propagate through the channel we study, and sparse dictionaries, the standard interpretability
+tool, prove unreliable as causal handles across a 15-dictionary sweep. Neither result would
+survive a significance filter, and both are worth recording.
+
+Three disclosures.
+
+First, the study audits AION-1, a model released by the Polymathic AI collaboration. It does
+not contradict any claim those authors make: it measures a behaviour their paper does not
+characterise, and it was only possible because they released weights, tokenisers and code
+openly. I have no affiliation with, funding from, or other connection to that group. I would
+nonetheless ask that referees be selected from outside that collaboration.
+
+Second, a preprint is posted as arXiv:2608.23626 under a CC BY 4.0 licence. I note the licence
+explicitly for the record; it is compatible with PLOS ONE's own CC BY 4.0 publishing licence.
+
+Third, a large language model was used substantially in this work: to write the analysis code,
+run the experiments, produce the figures, and draft the text. This is disclosed in the Methods
+section in the form PLOS requires, naming the tool, describing which parts of the study it
+affected, and setting out how its outputs were validated. The validation is not nominal. Every
+numeric claim in the article is checked programmatically against the recorded output that
+produced it; every figure is regenerated from that recorded output with no model call; the
+bibliography was machine-checked so that all 84 entries resolve to a live identifier; and two
+conclusions I had reached did not survive re-derivation and were withdrawn before submission.
+
+All code and per-experiment results are public. The result files underlying every figure, table
+and numeric claim accompany this submission as S1 File.
+
+The manuscript is not under consideration elsewhere, and all data are from public archives.
+
+Yours sincerely,
+
+Ihor Kendiukhov
+Independent researcher
