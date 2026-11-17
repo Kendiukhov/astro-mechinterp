@@ -47,7 +47,7 @@ section in the form PLOS requires, naming the tool, describing which parts of th
 affected, and setting out how its outputs were validated. The validation is not nominal. Every
 numeric claim in the article is checked programmatically against the recorded output that
 produced it; every figure is regenerated from that recorded output with no model call; the
-bibliography was machine-checked so that all 84 entries resolve to a live identifier; and two
+bibliography was machine-checked so that all 85 entries resolve to a live identifier; and two
 conclusions I had reached did not survive re-derivation and were withdrawn before submission.
 
 All code and per-experiment results are public. The result files underlying every figure, table
@@ -55,7 +55,16 @@ and numeric claim accompany this submission as S1 File.
 
 The manuscript is not under consideration elsewhere, and all data are from public archives.
 
+Finally, for completeness: I have published a closely related study applying the same family
+of methods -- data probes, matched controls, causal interventions and sparse autoencoders
+tested against an external ground truth -- to a plant genomic foundation model (Computational
+Biology and Chemistry 126:109438, doi:10.1016/j.compbiolchem.2026.109438). That paper shares
+methodology with this one but no data, no model and no results; it is cited here as prior work.
+I mention it so the overlap is on the record rather than discovered.
+
 Yours sincerely,
 
 Ihor Kendiukhov
-Independent researcher
+Institute of Medical Genetics and Applied Genomics
+University of Tubingen, Tubingen, Germany
+ihor.kendiukhov@student.uni-tuebingen.de

@@ -5,34 +5,23 @@ Article type: **Research Article**.
 
 ---
 
-## THE ONE THING THAT CANNOT BE FIXED LATER
-
-**Apply for Publication Fee Assistance (PFA) in the submission form, at submission.**
+## Publication fee
 
 The PLOS ONE fee is **US $2,477** for a research article, charged at the rate in force on the
-*submission* date and payable on acceptance. PFA is the only route to paying nothing that does
-not depend on an institution.
+*submission* date and payable on acceptance.
 
-PLOS's wording, verbatim:
+You have said the fee is covered, so Publication Fee Assistance is not needed. Two things are
+still worth doing in the **Additional Information -> Publication fees** step:
 
-> "Assistance must be formally applied for at submission. Requests made during the review
-> process or after acceptance will not be considered. Authors cannot apply for the fee
-> assistance by email or through direct request to journal editors."
-
-So: an accepted paper with no PFA application is an unpayable $2,477 invoice, and there is no
-appeal. The application sits in the **Additional Information → Publication fees** step of the
-submission form. Editors and reviewers never see it; it cannot influence the decision.
-
-Eligibility is *financial need*, with no affiliation, country or funding test — which an
-unaffiliated, unfunded author meets on its face. The form asks whether funding is available
-from your institution, an institutional library, government agencies or research funders; the
-honest answer to all four is "none". That answer must match the Financial Disclosure field
-below, which PLOS says is used in reviewing the PFA application.
+- **Check whether Tubingen has a PLOS institutional agreement.** Many German universities are
+  covered by read-and-publish arrangements; if yours is, the fee is settled centrally and you
+  pay nothing personally. Selecting the institution in that step is what triggers it.
+- Whatever route applies, note that PFA cannot be applied for later: *"Requests made during the
+  review process or after acceptance will not be considered."* If there is any chance the
+  funding falls through, apply at submission rather than relying on fixing it afterwards.
 
 **Do not mention fees in the cover letter.** PLOS: *"IMPORTANT: Do not include requests to
 reduce or waive publication fees in the cover letter."* The supplied cover letter does not.
-
----
 
 ## Files to upload
 

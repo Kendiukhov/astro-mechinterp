@@ -27,7 +27,8 @@
 foundation model,\\ and biases tomographic mean redshifts}
 
 \author[1]{Ihor Kendiukhov}
-\affil[1]{Independent researcher}
+\affil[1]{Institute of Medical Genetics and Applied Genomics, University of T\"ubingen,
+T\"ubingen, Germany}
 
 \date{\today}
 
@@ -120,7 +121,8 @@ These were developed largely for language models, where the superposition hypoth
 \citep{elhage2022toy} and the linear representation hypothesis \citep{park2024linear} frame the
 questions. Their transfer to scientific models is an active and, so far, mixed story: sparse
 autoencoders have been applied to galaxy morphology
-\citep{wu2025euclid,wu2025sparsefeature}, protein language
+\citep{wu2025euclid,wu2025sparsefeature}, plant genomic models
+\citep{kendiukhov2027plant}, protein language
 models \citep{simon2025interplm}, single-cell models \citep{pedrocchi2025singlecell} and vision
 encoders \citep{zaigrajew2025clip}, while an interpretability study of a sibling
 continuum-dynamics foundation model found features that were only piecewise consistent and
@@ -839,8 +841,11 @@ intermittently consistent and do not map cleanly onto standard physical decompos
 \citep{rosenfeld2026sparse}, though on non-causal alignment metrics sparse dictionaries can
 outperform PCA \citep{wu2025euclid}. Parallel efforts are
 under way in other scientific domains---fluid dynamics \citep{hu2026cfd}, quantum many-body
-systems \citep{qi2026quantum} and genomics \citep{guan2025genelm}---so the question of which
-tools transfer is a general one. That astronomy supplies
+systems \citep{qi2026quantum} and genomics \citep{guan2025genelm,kendiukhov2027plant}---so the
+question of which tools transfer is a general one. The protocol used here follows the
+composition-controlled design we applied to a plant genomic foundation model
+\citep{kendiukhov2027plant}, where matched controls likewise proved decisive and sparse
+autoencoders were likewise tested against an external ground truth rather than by inspection. That astronomy supplies
 ground-truth physical labels and forward models---an advantage language interpretability lacks
 \citep{cranmer2020symbolic,wetzel2025physics,lieu2025astronomy}---makes it a good testbed for
 deciding which interpretability tools actually earn their cost.

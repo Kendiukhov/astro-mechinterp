@@ -93,10 +93,11 @@ model, and biases tomographic mean redshifts}
 Ihor Kendiukhov\textsuperscript{1*}
 \\
 \bigskip
-\textbf{1} Independent researcher
+\textbf{1} Institute of Medical Genetics and Applied Genomics, University of T\"ubingen,
+T\"ubingen, Germany
 \\
 \bigskip
-* kenduhov.ig@gmail.com
+* ihor.kendiukhov@student.uni-tuebingen.de
 \end{flushleft}
 
 \section*{Abstract}
